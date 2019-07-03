@@ -1,5 +1,7 @@
 package net.onebean.aluminium.common.dictionary;
 
+import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -15,18 +17,17 @@ public class BeanDefineConfigue implements ApplicationListener<ContextRefreshedE
     @Autowired
     private DictionaryUtils dicDictionaryUtils;
 
+
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(BeanDefineConfigue.class);
+
     //0neBean:当一个ApplicationContext被初始化或刷新触发 加载字典到内存中
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        dicDictionaryUtils.logger.debug("0neBean：START:spring初始化开始======================>");
-        if (event.getApplicationContext().getParent() == null) {//root application context 没有parent，他就是老大.
-            dicDictionaryUtils.logger.debug("启动projectInit的start方法进行参数的初始化======================>");
-            dicDictionaryUtils.init();
-        } else {
-            //为什么会执行两次：请参考博文：http://www.cnblogs.com/yucongblog/p/5437744.html
-            dicDictionaryUtils.logger.debug("spring初始化时,执行onApplicationEvent:event.getApplicationContext().getParent() != null======================>");
-        }
-        dicDictionaryUtils.logger.debug("0neBean:END:spring初始化完毕======================>");
+        logger.info("start init custom spring config");
+        dicDictionaryUtils.init();
+        logger.info("init custom spring config done");
     }
+
+
 
 }

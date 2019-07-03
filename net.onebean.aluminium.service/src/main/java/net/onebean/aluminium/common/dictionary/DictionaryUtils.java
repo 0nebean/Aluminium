@@ -3,8 +3,6 @@ package net.onebean.aluminium.common.dictionary;
 import net.onebean.aluminium.model.DicDictionary;
 import net.onebean.aluminium.service.DicDictionaryService;
 import net.onebean.util.CollectionUtil;
-import org.slf4j.LoggerFactory;
-import ch.qos.logback.classic.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,6 @@ import java.util.*;
 @Service
 public class DictionaryUtils {
 
-    public static Logger logger = (Logger) LoggerFactory.getLogger(DictionaryUtils.class);
 
     @Autowired
     private DicDictionaryService dicDictionaryService;
