@@ -36,12 +36,21 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>ftl/**</include>
-                    <include>sql/**</include>
                     <include>static/**</include>
                     <include>templates/**</include>
                     <include>banner.txt</include>
                     <!-- 以上直接打入到启动jar包中 -->
+                </includes>
+            </resource>
+
+            <!-- 过滤配置文件到config目录 -->
+            <resource>
+                <directory>src/main/resources/templates-customer</directory>
+                <filtering>true</filtering>
+                <targetPath>templates-customer</targetPath>
+                <includes>
+                    <include>**/*.ftl</include>
+                    <include>**/*.vm</include>
                 </includes>
             </resource>
 
@@ -107,6 +116,8 @@
                     <!-- 项目启动jar包排除目录 -->
                     <excludes>
                         <exclude>bin/**</exclude>
+                        <exclude>templates-customer/**</exclude>
+                        <exclude>pdm/**</exclude>
                         <exclude>config/**</exclude>
                         <exclude>logs/**</exclude>
                         <exclude>instructions/**</exclude>

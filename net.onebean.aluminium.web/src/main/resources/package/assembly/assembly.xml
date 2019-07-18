@@ -31,6 +31,13 @@
             <fileMode>0644</fileMode>
         </fileSet>
 
+        <!-- 指定输出target/classes中的模板文件到templates-customer目录中 -->
+        <fileSet>
+            <directory>${build.outputDirectory}/templates-customer</directory>
+            <outputDirectory>templates-customer</outputDirectory>
+            <fileMode>0644</fileMode>
+        </fileSet>
+
         <!-- 指定输出target/classes中的配置文件到config目录中 -->
         <fileSet>
             <directory>${build.outputDirectory}/logs</directory>

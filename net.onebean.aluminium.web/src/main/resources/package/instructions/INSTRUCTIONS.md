@@ -153,7 +153,7 @@
         </archive>
         <includes>
             <!-- 只打包指定目录的文件 -->
-            <include>io/geekidea/springboot/**</include>
+            <include>net/onebean/springboot/**</include>
         </includes>
     </configuration>
 </plugin>    
@@ -292,8 +292,8 @@ ___
 │  │      assembly.xml
 │  │
 │  ├─java
-│  │  └─io
-│  │      └─geekidea
+│  │  └─net
+│  │      └─onebean
 │  │          └─springboot
 │  │              └─assembly
 │  │                      Application.java
@@ -553,9 +553,6 @@ http://localhost:8080/example/hello?name=123
     
 #### maven项目打包
 ##### 1. 使用IDEA工具打包,选择对应的profiles,然后clean package
-![mvn-clean-package-local](https://raw.githubusercontent.com/geekidea/spring-boot-assembly/master/img/mvn-clean-package-local.png)
-![mvn-clean-package-dev](https://raw.githubusercontent.com/geekidea/spring-boot-assembly/master/img/mvn-clean-package-dev.png)
-
 ##### 2. 使用maven命令打包
 
 ```bash
