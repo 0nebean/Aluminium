@@ -4,13 +4,10 @@ import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import net.onebean.core.extend.ApolloConfInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Component;
@@ -44,13 +41,7 @@ import org.springframework.stereotype.Service;
 @EnableDiscoveryClient
 @EnableHystrix
 @EnableFeignClients(basePackages = "net.onebean.*.**.api.**")
-public class Main extends SpringBootServletInitializer {
-
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		ApolloConfInitializer.init();
-		return builder.sources(Main.class);
-	}
+public class Main {
 
 	public static void main(String[] args) {
 		/*在apollo之前加载logback配置 初始化spring boot logger*/

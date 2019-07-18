@@ -7,7 +7,7 @@
     <parent>
         <groupId>net.onebean</groupId>
         <artifactId>net.onebean.aluminium</artifactId>
-        <version>1.0.0.SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>net.onebean.aluminium.service</artifactId>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>net.onebean</groupId>
             <artifactId>net.onebean.data.aliyun.oss</artifactId>
-            <version>1.0.0.RELEASE</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
