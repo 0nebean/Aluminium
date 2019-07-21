@@ -6,11 +6,11 @@ Introduction
 ---
 - 一言蔽之 (带有权限控制和代码生成的TMA架构后台管理系统)
 - 框架特性
- - 泛型的增删改查，继承就即可使用
- - sql条件封装，简单的API调用实现自定义查询
- - 多端程序共用代码，实现前后台共用dao，service甚至controller
- - 由spring security实现健壮可靠的权限控制并可以简单拓展成SSO单点登录
- - 基于以上实现自动生成代码的功能
+  - 泛型的增删改查，继承就即可使用
+  - sql条件封装，简单的API调用实现自定义查询
+  - 多端程序共用代码，实现前后台共用dao，service甚至controller
+  - 由spring security实现健壮可靠的权限控制并可以简单拓展成SSO单点登录
+  - 基于以上实现自动生成代码的功能
  
 Documentation
 ---
