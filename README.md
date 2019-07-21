@@ -5,7 +5,7 @@
 Introduction
 ---
 - 一言蔽之 (带有权限控制和代码生成的TMA架构后台管理系统)
-- [框架特性(点击查看设计思想)](https://github.com/0nebean/Aluminium/wiki/framework-features)
+- 框架特性[(设计思想)](https://github.com/0nebean/Aluminium/wiki/framework-features)
   - 泛型的增删改查，继承就即可使用
   - 查询sql条件封装，简单的API调用实现自定义查询
   - 灵活的结构调整,多端程序共用代码，可以实现前后台共用dao，service甚至controller
