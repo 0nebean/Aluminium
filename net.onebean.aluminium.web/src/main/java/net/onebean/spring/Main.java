@@ -17,7 +17,10 @@ import org.springframework.stereotype.Service;
 @ComponentScan(
 		basePackages = {
 				"net.onebean.**.service",
+				"net.onebean.**.common",
+				"net.onebean.**.security",
 				"net.onebean.**.consumer",
+				"net.onebean.**.provider",
 				"net.onebean.**.provider",
 				"net.onebean.*.**.api",
 				"net.onebean.core",
