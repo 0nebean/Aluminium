@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="public/head :: onLoadHead(${description}管理)">
-</head>
-<body ddata-type="widgets">
+<!--通用head 其中加载了css-->
+<head th:replace="public/head :: onLoadHead(${description}管理)"></head>
+
+<body data-type="index">
 <div class="am-g tpl-g">
-    <!--引用通用样式-->
-    <css th:replace="public/css :: onLoadCSS"></css>
+    <!-- 通用头部 -->
+    <header th:include="public/topBar :: topBar"></header>
+    <!-- 主题选择组件 -->
+    <div th:include="public/skiner :: skiner" class="tpl-skiner"></div>
+    <!-- 公用左侧栏 -->
+    <div th:include="public/leftMenu :: leftMenu" class="left-sidebar"></div>
+    <!-- 模态提示组件 -->
+    <div th:include="public/tips :: Tips"></div>
 
     <!-- 内容区域 -->
     <div class="tpl-content-wrapper none-margin">
@@ -168,10 +175,8 @@
     </div>
 </div>
 
-<!--引用通用js-->
+<!--加载JS-->
 <js th:replace="public/js :: onLoadJS"></js>
-<!-- 模态提示组件 -->
-<div th:include="public/tips :: Tips"></div>
 <script th:inline="javascript">
     $(function () {
         validateFrom();

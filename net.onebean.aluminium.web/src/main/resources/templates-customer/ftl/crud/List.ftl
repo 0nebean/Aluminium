@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="public/head :: onLoadHead(首页)">
+<!--通用head 其中加载了css-->
+<head th:replace="public/head :: onLoadHead(${description}列表)"></head>
 
-</head>
-<body data-type="widgets">
+<body data-type="index">
 <div class="am-g tpl-g">
-    <!--引用通用样式-->
-    <css th:replace="public/css :: onLoadCSS"></css>
-
+    <!-- 通用头部 -->
+    <header th:include="public/topBar :: topBar"></header>
+    <!-- 主题选择组件 -->
+    <div th:include="public/skiner :: skiner" class="tpl-skiner"></div>
+    <!-- 公用左侧栏 -->
+    <div th:include="public/leftMenu :: leftMenu" class="left-sidebar"></div>
+    <!-- 模态提示组件 -->
+    <div th:include="public/tips :: Tips"></div>
     <!-- 内容区域 -->
-    <div class="tpl-content-wrapper none-margin">
+    <div class="tpl-content-wrapper">
         <div class="row-content am-cf">
             <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
@@ -107,10 +112,8 @@
         </div>
     </div>
 </div>
-<!--引用通用js-->
+<!--加载JS-->
 <js th:replace="public/js :: onLoadJS"></js>
-<!-- 模态提示组件 -->
-<div th:include="public/tips :: Tips"></div>
 <script type="text/javascript" >
     $(function () {
         initDataTable()
