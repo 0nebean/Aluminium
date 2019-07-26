@@ -113,30 +113,43 @@ function clearUploadImg(target) {
 var openNewTab = function (target) {
     var $link = $(target).data('url');
     var $name = $(target).data('name');
-    routingPage($link,$name);
+    /*面包屑*/
+    var breadCrumbs = eachBreadCrumbs($link, $name, true);
+    delCookie('breadCrumbsStr');
+    setCookie('breadCrumbsStr',breadCrumbs);
+    window.location.href = $link;
 };
 
 /**
  * 路由页面
  * @param target
  */
-function routingPage($link, $name) {
-    /*面包屑*/
-    var breadCrumbs = eachBreadCrumbs($link, $name, true);
-    var operator = ($link.indexOf("?") != -1)?'&':'?';
-    $link += operator+"breadCrumbsStr=true";
+function routingPage($url, $title) {
+    $url = addCtxToUrl($url);
+    var $link;
+
+    var endWithNumber = /^\S+([0-9]|\/){1}$/;
+    if (endWithNumber.test($url)){
+        var $index = $url.lastIndexOf("\/");
+        $link = $url.substring(0,$index);
+    }
+
+    var breadCrumbs = eachBreadCrumbs($link, $title, false);
     delCookie('breadCrumbsStr');
     setCookie('breadCrumbsStr',breadCrumbs);
-    window.location.href = $link;
+    window.location.href = $url;
 }
 
 /**
  * 面包屑按钮点击事件
  */
 $('body').on('click', '.onebean-bread-crumbs-group a', function () {
-    var $link = $(this).data('url');
-    var $name = $(this).html();
-    routingPage($link,$name);
+    var $url = $(this).data('url');
+    var $title = $(this).html();
+    var breadCrumbs = eachBreadCrumbs($url, $title, false);
+    delCookie('breadCrumbsStr');
+    setCookie('breadCrumbsStr',breadCrumbs);
+    window.location.href = $url;
 });
 
 /**
@@ -873,7 +886,7 @@ function serializeChildFromJson(arr) {
  */
 function eachBreadCrumbs($url, $title, $isStartPage) {
     var $temp;
-    var breadCrumbs = justEachBreadCrumbs($isStartPage);
+    var breadCrumbs = justEachBreadCrumbs($isStartPage,$url);
     $temp = {};
     $temp.breadCrumbsUrl = $url;
     $temp.breadCrumbsTitle = $title;
@@ -885,19 +898,17 @@ function eachBreadCrumbs($url, $title, $isStartPage) {
  * 遍历面包屑生成json 数组
  * @returns {Array}
  */
-function justEachBreadCrumbs($isStartPage) {
-    var $temp;
-    var breadCrumbs = new Array();
+function justEachBreadCrumbs($isStartPage,$url) {
+    var $breadCrumbs = [];
     if (!$isStartPage) {
-        var $breadCrumbs = $('.onebean-bread-crumbs-group').find('a');
+        $breadCrumbs = getCookie("breadCrumbsStr");
         $.each($breadCrumbs, function (i, e) {
-            $temp = {};
-            $temp.breadCrumbsUrl = $(e).data('url');
-            $temp.breadCrumbsTitle = $(e).html();
-            breadCrumbs.push($temp)
+            if ($url === e.breadCrumbsUrl) {
+                $breadCrumbs = $breadCrumbs.slice(0,i);
+            }
         })
     }
-    return breadCrumbs;
+    return $breadCrumbs;
 }
 
 
