@@ -113,6 +113,14 @@ function clearUploadImg(target) {
 var openNewTab = function (target) {
     var $link = $(target).data('url');
     var $name = $(target).data('name');
+    routingPage($link,$name);
+};
+
+/**
+ * 路由页面
+ * @param target
+ */
+function routingPage($link, $name) {
     /*面包屑*/
     var breadCrumbs = eachBreadCrumbs($link, $name, true);
     var operator = ($link.indexOf("?") != -1)?'&':'?';
@@ -120,34 +128,15 @@ var openNewTab = function (target) {
     delCookie('breadCrumbsStr');
     setCookie('breadCrumbsStr',breadCrumbs);
     window.location.href = $link;
-};
-
-/**
- * 路由页面
- * @param target
- */
-function routingPage($url, $title) {
-    $url = addCtxToUrl($url);
-    var breadCrumbs = eachBreadCrumbs($url, $title, false);
-    var operator = ($url.indexOf("?") != -1) ? '&' : '?';
-    $url += operator+"breadCrumbsStr=true";
-    delCookie('breadCrumbsStr');
-    setCookie('breadCrumbsStr',breadCrumbs);
-    window.location.href = $url;
 }
 
 /**
  * 面包屑按钮点击事件
  */
 $('body').on('click', '.onebean-bread-crumbs-group a', function () {
-    var $url = $(this).data('url');
-    var $title = $(this).html();
-    var breadCrumbs = eachBreadCrumbs($url, $title, false);
-    var operator = ($url.indexOf("?") != -1) ? '&' : '?';
-    $url += operator+"breadCrumbsStr=true";
-    delCookie('breadCrumbsStr');
-    setCookie('breadCrumbsStr',breadCrumbs);
-    window.location.href = $url;
+    var $link = $(this).data('url');
+    var $name = $(this).html();
+    routingPage($link,$name);
 });
 
 /**
