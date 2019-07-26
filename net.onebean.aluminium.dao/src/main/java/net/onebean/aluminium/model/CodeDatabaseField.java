@@ -1,18 +1,14 @@
 package net.onebean.aluminium.model;
+
 import net.onebean.core.extend.FiledName;
 import net.onebean.core.extend.IgnoreColumn;
 import net.onebean.core.extend.TableName;
 import net.onebean.core.model.BaseModel;
-import net.onebean.util.StringUtils;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @TableName("code_database_field")
-public class CodeDatabaseField extends BaseModel{
+public class CodeDatabaseField extends BaseModel {
 
 	private Long tableId;
 	private String columnName;

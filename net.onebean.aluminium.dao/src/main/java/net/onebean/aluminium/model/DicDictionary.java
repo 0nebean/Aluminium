@@ -2,11 +2,13 @@ package net.onebean.aluminium.model;
 import net.onebean.core.extend.FiledName;
 import net.onebean.core.extend.TableName;
 import net.onebean.core.model.BaseModel;
+import net.onebean.core.model.InterfaceBaseDeletedModel;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 @TableName("dic_dictionary")
-public class DicDictionary extends BaseModel{
+public class DicDictionary extends BaseModel implements InterfaceBaseDeletedModel{
 
 	private String val;
 	@FiledName("val")

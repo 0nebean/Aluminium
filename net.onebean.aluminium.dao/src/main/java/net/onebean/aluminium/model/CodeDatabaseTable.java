@@ -5,13 +5,12 @@ import net.onebean.core.extend.FiledName;
 import net.onebean.core.extend.IgnoreColumn;
 import net.onebean.core.extend.TableName;
 import net.onebean.core.model.BaseModel;
-import net.onebean.util.StringUtils;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 @TableName("code_database_table")
-public class CodeDatabaseTable extends BaseModel{
+public class CodeDatabaseTable extends BaseModel {
 
 	private Long parentMenuId;
 	private String menuIcon;

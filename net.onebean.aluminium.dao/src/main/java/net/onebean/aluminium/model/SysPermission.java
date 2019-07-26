@@ -4,12 +4,13 @@ import net.onebean.core.extend.FiledName;
 import net.onebean.core.extend.IgnoreColumn;
 import net.onebean.core.extend.TableName;
 import net.onebean.core.model.BaseModel;
+import net.onebean.core.model.InterfaceBaseDeletedModel;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 @TableName("sys_permission")
-public class SysPermission extends BaseModel implements Cloneable {
+public class SysPermission extends BaseModel implements Cloneable,InterfaceBaseDeletedModel {
 
 	private String name;
 	@FiledName("name")

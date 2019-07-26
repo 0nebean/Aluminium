@@ -40,5 +40,5 @@ function intiPrTree(roleId) {
     var $treeTemplate = $('#PrTree-template');
     var $treeTips = $('#PrTree-tips');
     initTreeSyncMultiSelect(title,roleId,url,$treeTemplate);
-    treeTipsModal($treeTips);
+    $treeTips.modal('open');
 }

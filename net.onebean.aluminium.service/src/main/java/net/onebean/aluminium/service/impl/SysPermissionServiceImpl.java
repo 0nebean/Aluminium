@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import net.onebean.core.BaseBiz;
 import net.onebean.core.Condition;
+import net.onebean.core.extend.Sort;
 import net.onebean.core.form.Parse;
 import net.onebean.aluminium.VO.MenuTree;
 import net.onebean.aluminium.common.dataPerm.DataPermUtils;
@@ -56,26 +57,25 @@ public class SysPermissionServiceImpl extends BaseBiz<SysPermission, SysPermissi
 
 	public List<SysPermission> findChildSync(SysUser currentUser) {
 		StringBuilder join = new StringBuilder();
-		join.append(" LEFT JOIN sys_permission_role_{0} spr on t.id = spr.permission_id");
-		join.append(" LEFT JOIN sys_role_{0} r on spr.role_id = r.id");
-		join.append(" LEFT JOIN sys_role_user_{0} sru on sru.sys_role_id = r.id");
-		join.append(" LEFT JOIN sys_user_{0} u on u.id = sru.sys_user_id");
-		join.append(" LEFT JOIN sys_organization_{0} o on u.org_id = o.id");
+		join.append(" LEFT JOIN sys_permission_role spr on t.id = spr.permission_id");
+		join.append(" LEFT JOIN sys_role r on spr.role_id = r.id");
+		join.append(" LEFT JOIN sys_role_user sru on sru.sys_role_id = r.id");
+		join.append(" LEFT JOIN sys_user u on u.id = sru.sys_user_id");
+		join.append(" LEFT JOIN sys_organization o on u.org_id = o.id");
 		Map<String,Object> dp = dataPermUtils.dataPermFilter(currentUser,"o","t",join.toString());
-		dp.put("join", join.toString());
+		StringBuilder sb = new StringBuilder();
 		if (null != dp.get("sql")){
-			StringBuilder sb = new StringBuilder();
 			String sql = dp.get("sql").toString();
 			sb.append(sql);
-			sb.append("AND   u.`id` = ");
-			sb.append(currentUser.getId());
-			sb.append(" AND spr.is_deleted = '0'");
-			sb.append(" AND r.is_deleted = '0'");
-			sb.append(" AND sru.is_deleted = '0'");
-			sb.append(" AND o.is_deleted = '0'");
-			sb.append(" AND u.is_deleted = '0'");
-			dp.put("sql",sb.toString());
 		}
+		sb.append("AND   u.`id` = ");
+		sb.append(currentUser.getId());
+		sb.append(" AND spr.is_deleted = '0'");
+		sb.append(" AND r.is_deleted = '0'");
+		sb.append(" AND sru.is_deleted = '0'");
+		sb.append(" AND o.is_deleted = '0'");
+		sb.append(" AND u.is_deleted = '0'");
+		dp.put("sql",sb.toString());
 		return tree(this.findAll(dp));
 	}
 
@@ -125,7 +125,8 @@ public class SysPermissionServiceImpl extends BaseBiz<SysPermission, SysPermissi
 	public List<SysPermission>findChildSyncForMenu(){
 		Condition param = Condition.parseModelCondition("menuType@string@eq");
 		param.setValue("menu");
-		return tree(this.find(null,param));
+		Sort sort = new Sort(Sort.ASC,"sort");
+		return tree(this.find(null,new ArrayList<Condition>(){{add(param);}},sort));
 	}
 
 

@@ -10,14 +10,14 @@
     </select>
 
     <delete id="deteleByRoleId" parameterType="long">
-        update sys_permission_role{tableSuffix} set is_deleted = '1'
+        update sys_permission_role set is_deleted = '1'
           <where>
               `role_id` = ${roleId}
           </where>
     </delete>
 
     <delete id="deteleByPermissionId" parameterType="long">
-        update sys_permission_role{tableSuffix} set is_deleted = '1'
+        update sys_permission_role set is_deleted = '1'
         <where>
             `permission_id` = ${permissionId}
         </where>

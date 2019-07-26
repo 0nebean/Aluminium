@@ -1,5 +1,6 @@
 package net.onebean.aluminium.security;
 
+import net.onebean.aluminium.security.OnebeanDigester;
 import net.onebean.util.PropUtil;
 import org.springframework.security.crypto.codec.Hex;
 import org.springframework.security.crypto.codec.Utf8;

@@ -91,7 +91,7 @@ public class SysOrganizationServiceImpl extends BaseBiz<SysOrganization, SysOrga
     @Override
     public List<OrgTree> findChildAsync(Long parentId,Long selfId,SysUser currentUser) {
         List<OrgTree> res = new ArrayList<>();
-        String join = "LEFT JOIN sys_organization_{0} o ON o.`id` = t.org_id";
+        String join = "LEFT JOIN sys_organization o ON o.`id` = t.org_id";
         List<OrgTree> list = baseDao.findChildAsync(parentId,dataPermUtils.dataPermFilter(currentUser,"o","t",join));
         for (OrgTree o : list) {//某些业务场景 节点不能选择自己作为父级节点,故过滤掉所有自己及以下节点
             if (null == selfId || (Parse.toInt(o.getId()) != selfId) || selfId == 1) {

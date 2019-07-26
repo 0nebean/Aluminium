@@ -30,6 +30,8 @@ public class OneBeanWebSecurityConfig extends WebSecurityConfigurerAdapter {
     OneBeanPermissionEvaluator permissionEvaluator;
     @Autowired
     private OneBeanPasswordEncoder oneBeanPasswordEncoder;
+    @Autowired
+    private OneBeanLoginSuccessHandler oneBeanLoginSuccessHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -56,7 +58,8 @@ public class OneBeanWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/center")
+                .defaultSuccessUrl("/")
+                .successHandler(oneBeanLoginSuccessHandler)
                 .failureHandler(myAuthenticationFailureHandler)
                 .permitAll() //登录页面用户任意访问
                 .and()

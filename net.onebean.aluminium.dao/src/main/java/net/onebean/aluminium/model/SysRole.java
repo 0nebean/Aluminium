@@ -3,11 +3,12 @@ import net.onebean.core.extend.FiledName;
 import net.onebean.core.extend.IgnoreColumn;
 import net.onebean.core.extend.TableName;
 import net.onebean.core.model.BaseModel;
+import net.onebean.core.model.InterfaceBaseDeletedModel;
 
 import java.sql.Timestamp;
 
 @TableName("sys_role")
-public class SysRole extends BaseModel{
+public class SysRole extends BaseModel implements InterfaceBaseDeletedModel{
 
 	private String name;
 	private String chName;

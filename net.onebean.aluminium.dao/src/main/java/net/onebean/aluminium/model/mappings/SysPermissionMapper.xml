@@ -59,7 +59,7 @@
 
     <!--根据ID删除所有子节点-->
     <delete id="deleteSelfAndChildById" parameterType="long">
-        update sys_permission{tableSuffix} set is_deleted = '1'
+        update sys_permission set is_deleted = '1'
         WHERE FIND_IN_SET(#{id},parent_ids) OR id = #{id}
     </delete>
 

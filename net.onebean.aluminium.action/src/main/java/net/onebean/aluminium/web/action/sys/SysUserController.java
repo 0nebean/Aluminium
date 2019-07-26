@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.text.MessageFormat;
 import java.util.Optional;
 
 /**
@@ -146,7 +144,7 @@ public class SysUserController extends BaseController<SysUser,SysUserService> {
     @PreAuthorize("hasPermission('$everyone','PERM_USER_LIST')")
     public PageResult<SysUser> list (Sort sort, Pagination page, PageResult<SysUser> result,@RequestParam(value = "conditionList",required = false) String cond){
         SysUser currentUser = SpringSecurityUtil.getCurrentLoginUser();
-        String join = "LEFT JOIN sys_organization_{0} o ON o.`id` = t.org_id";
+        String join = "LEFT JOIN sys_organization o ON o.`id` = t.org_id";
         initData(sort,page,cond,dataPermUtils.dataPermFilter(currentUser,"o","t",join));
         dicCoverList(null,"dic@SF$isLock","dic@YHLX$userType","date@createTime$");
         result.setData(dataList);

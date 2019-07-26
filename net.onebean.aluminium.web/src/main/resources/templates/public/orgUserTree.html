@@ -47,7 +47,7 @@
 <script id="userOptinTempl" type="text/html" th:fragment="orgTreeLinkageUserOptionTips">
     {{if $data.length > 0}}
     <option value="  ">请选择</option>
-    {{each $data as data}}
+    {{each $data data}}
     <option value="{{data.id}}">{{data.realName}}</option>
     {{/each}}
     {{else}}
@@ -65,7 +65,7 @@
         $treeTips.html(template('orgTreeLinkageUserTempl',{businessInPutId:$(businessInPutId).prop('id')}));
         $('#linkageDataSelector').selected({dropUp:1});
         initTreeAsyncSingleSelect("请从机构上选择用户",selfId,"/sysorg/orgtree");
-        treeTipsModal($treeTips);
+        $treeTips.modal('open');
     }
 
     /* 选中机构后联动查询用户*/

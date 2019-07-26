@@ -75,7 +75,7 @@
 
 
     <delete id="deleteSelfAndChildById" parameterType="long">
-        update sys_organization{tableSuffix} set is_deleted = '1'
+        update sys_organization set is_deleted = '1'
         WHERE FIND_IN_SET(#{id},parent_ids) OR id = #{id}
     </delete>
 

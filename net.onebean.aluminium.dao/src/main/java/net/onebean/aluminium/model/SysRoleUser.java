@@ -2,11 +2,12 @@ package net.onebean.aluminium.model;
 import net.onebean.core.extend.FiledName;
 import net.onebean.core.extend.TableName;
 import net.onebean.core.model.BaseModel;
+import net.onebean.core.model.InterfaceBaseDeletedModel;
 
 import java.sql.Timestamp;
 
 @TableName("sys_role_user")
-public class SysRoleUser extends BaseModel{
+public class SysRoleUser extends BaseModel implements InterfaceBaseDeletedModel{
 
 	public SysRoleUser() {
 	}
