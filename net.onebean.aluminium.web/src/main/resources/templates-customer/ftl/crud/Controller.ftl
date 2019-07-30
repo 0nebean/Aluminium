@@ -1,19 +1,25 @@
 package ${action_package_name}.${mapping};
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import net.onebean.core.base.BaseResponse;
 import net.onebean.core.query.Pagination;
 import net.onebean.core.extend.Sort;
+import net.onebean.core.base.BasePaginationRequest;
+import net.onebean.core.base.BasePaginationResponse;
+import net.onebean.core.error.BusinessException;
+import net.onebean.util.DateUtils;
 import net.onebean.aluminium.core.BaseController;
+import net.onebean.aluminium.common.error.ErrorCodesEnum;
 import ${model_package_name}.${model_name};
 import ${service_package_name}.${model_name}Service;
 import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Optional;
 
 
 /**
@@ -93,7 +99,7 @@ public class ${model_name}Controller extends BaseController<${model_name},${mode
     @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','${premName}_SAVE')")
     public BaseResponse<${model_name}> add(@RequestBody ${model_name} entity) {
-    logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
+    logger.info("method add access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
     BaseResponse<${model_name}> response = new BaseResponse<>();
         try {
             logger.debug("method add entity = " + JSON.toJSONString(entity, SerializerFeature.WriteMapNullValue));
@@ -140,23 +146,6 @@ public class ${model_name}Controller extends BaseController<${model_name},${mode
         return response;
     }
 
-    /**
-     * 列表数据
-     * @param sort 排序参数
-     * @param page 分页参数
-     * @param result 结果集
-     * @param cond 表达式
-     * @return PageResult<${model_name}>
-    */
-    @RequestMapping("list")
-    @ResponseBody
-    @PreAuthorize("hasPermission('$everyone','${premName}_LIST')")
-    public PageResult<${model_name}> list(Sort sort, Pagination page, PageResult<${model_name}> result, @RequestParam(value = "conditionList", required = false) String cond) {
-        initData(sort, page, cond);
-        result.setData(dataList);
-        result.setPagination(page);
-        return result;
-    }
 
     /**
     * 列表数据
