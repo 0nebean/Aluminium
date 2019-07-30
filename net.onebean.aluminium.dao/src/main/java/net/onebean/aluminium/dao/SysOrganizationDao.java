@@ -1,6 +1,6 @@
 package net.onebean.aluminium.dao;
-import net.onebean.core.BaseDao;
-import net.onebean.aluminium.VO.OrgTree;
+import net.onebean.core.base.BaseDao;
+import net.onebean.aluminium.vo.OrgTree;
 import net.onebean.aluminium.model.SysOrganization;
 import org.apache.ibatis.annotations.Param;
 

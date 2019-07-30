@@ -1,7 +1,7 @@
 package net.onebean.aluminium.service.impl;
 import net.onebean.aluminium.service.DicDictionaryService;
 import org.springframework.stereotype.Service;
-import net.onebean.core.BaseBiz;
+import net.onebean.core.base.BaseBiz;
 import net.onebean.aluminium.model.DicDictionary;
 import net.onebean.aluminium.dao.DicDictionaryDao;
 

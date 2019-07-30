@@ -127,7 +127,7 @@
 <script type="text/javascript">
     $(function () {
         validateFrom();
-    })
+    });
 
 
     /**
@@ -161,14 +161,14 @@
                 }
             },
             submitHandler: function (form) { //验证成功时调用
-                var url = "/dic/save"
+                var url = "/dic/save";
                 var param = $('#DataFrom').serializeJson();
 
                 function completeHandler(data) {
                     routingPage('/dic/preview', '字典管理');
                 }
 
-                doGet(url, param, completeHandler)
+                doPost(url, param, completeHandler)
             }
         });
     }

@@ -116,7 +116,7 @@ var openNewTab = function (target) {
     /*面包屑*/
     var breadCrumbs = eachBreadCrumbs($link, $name, true);
     delCookie('breadCrumbsStr');
-    setCookie('breadCrumbsStr',breadCrumbs);
+    setCookie('breadCrumbsStr', breadCrumbs);
     window.location.href = $link;
 };
 
@@ -129,14 +129,14 @@ function routingPage($url, $title) {
     var $link;
 
     var endWithNumber = /^\S+([0-9]|\/){1}$/;
-    if (endWithNumber.test($url)){
+    if (endWithNumber.test($url)) {
         var $index = $url.lastIndexOf("\/");
-        $link = $url.substring(0,$index);
+        $link = $url.substring(0, $index);
     }
 
     var breadCrumbs = eachBreadCrumbs($link, $title, false);
     delCookie('breadCrumbsStr');
-    setCookie('breadCrumbsStr',breadCrumbs);
+    setCookie('breadCrumbsStr', breadCrumbs);
     window.location.href = $url;
 }
 
@@ -148,7 +148,7 @@ $('body').on('click', '.onebean-bread-crumbs-group a', function () {
     var $title = $(this).html();
     var breadCrumbs = eachBreadCrumbs($url, $title, false);
     delCookie('breadCrumbsStr');
-    setCookie('breadCrumbsStr',breadCrumbs);
+    setCookie('breadCrumbsStr', breadCrumbs);
     window.location.href = $url;
 });
 
@@ -158,13 +158,13 @@ $('body').on('click', '.onebean-bread-crumbs-group a', function () {
 function activeMenuOnLoad() {
     var $link = window.location.pathname;
     var $breadCrumbsArr = getCookie('breadCrumbsStr');
-    if ($breadCrumbsArr && $breadCrumbsArr.length > 1){
+    if ($breadCrumbsArr && $breadCrumbsArr.length > 1) {
         $link = $breadCrumbsArr[0].breadCrumbsUrl;
     }
     var endWithNumber = /^\S+([0-9]|\/){1}$/;
-    if (endWithNumber.test($link)){
+    if (endWithNumber.test($link)) {
         var $index = $link.lastIndexOf("\/");
-        $link = $link.substring(0,$index);
+        $link = $link.substring(0, $index);
     }
     var $parents = $('.sidebar-nav').find('.sidebar-nav-link').find('a');
     $.each($parents, function (i, e) {
@@ -228,20 +228,6 @@ $('body').on('switchChange.bootstrapSwitch init.bootstrapSwitch', 'input[data-am
     }
 });
 
-
-/**
- * 比较是否存在重复的tab
- * @param jtabs
- * @param href
- * @returns {number}
- */
-function isRepeatTab($onebeanTabs, href) {
-    var result = -1;
-    $.each($onebeanTabs, function (i, e) {
-        result = ($(e).children('a').data('url') == href) ? i : result;
-    });
-    return result;
-}
 
 /**
  * list页面搜索条件里的dic选择框变动后 重新加载页面
@@ -353,8 +339,8 @@ function initTreeAsyncSingleSelect(title, selfId, url) {
                 if (options.childList != null && options.childList.length > 0) {
                     callback({data: options.childList});
                 } else {
-                    doPost(url, {parentId: options.id, selfId: selfId}, function (res) {
-                        callback({data: res.data});
+                    doPost(url,{data:{parentId: options.id, selfId: selfId}}, function (res) {
+                        callback({data: res.datas});
                     })
                 }
 
@@ -383,8 +369,8 @@ function initTreeSyncMultiSelect(title, roleId, url, $treeTemplate) {
                 if (options.childList != null && typeof (options.childList) === "object") {
                     callback({data: options.childList});
                 } else {
-                    doPost(url, {roleId: roleId}, function (res) {
-                        callback({data: res.data});
+                    doPost(url, {data: roleId}, function (res) {
+                        callback({data: res.datas});
                     })
                 }
 
@@ -432,7 +418,6 @@ function initTreeSyncMultiSelect(title, roleId, url, $treeTemplate) {
 }
 
 
-
 /**
  * 页面 通用 数据数量 改变事件
  * #limitSelector
@@ -463,14 +448,14 @@ $('body').on('click', '.list-del-button', function () {
         relatedTarget: this,
         onConfirm: function () {
             var completeHandler = function (res) {
-                if (res.flag) {
+                if (res.errCode === '0') {
                     initDataTable();
                 } else {
-                    alert(res.msg)
+                    alert(res.errMsg)
                 }
             };
             var $link = $(this.relatedTarget).data('url');
-            doGet($link, null, completeHandler)
+            doPost($link, null, completeHandler)
         },
         onCancel: function () {
         }
@@ -485,42 +470,46 @@ $('body').on('click', '.list-del-button', function () {
  */
 function doPost(url, param, completeHandler) {
     url = addCtxToUrl(url);
-        $.AMUI.progress.start();
+    $.AMUI.progress.start();
     $.ajax({
         url: url,
         type: "POST",//请求方式
+        contentType: 'application/json;charset=utf-8',
         dataType: "json",//返回参数的类型
-        // contentType:"utf-8",//发送请求的编码方式
-        data: param,
+        data: JSON.stringify(param),
         success: function (data) {//请求成功后调用的函数
-            completeHandler(data);
+            if (data.errCode === '0'){
+                completeHandler(data);
+            }else{
+                alert("请求异常,错误码 ["+data.errCode+"],"+"错误信息 ["+data.errCode+"]");
+            }
             $.AMUI.progress.done();
         }
     })
 }
 
-/**
- * Http post 同步请求
- * @param url 请求地址
- * @param param 请求参数
- * @param completeHandler 回调函数
- */
-function doPostSync(url, param, completeHandler) {
-    url = addCtxToUrl(url);
-    $.AMUI.progress.start();
-    $.ajax({
-        url: url,
-        async: false,
-        type: "POST",//请求方式
-        dataType: "json",//返回参数的类型
-        // contentType:"utf-8",//发送请求的编码方式
-        data: param,
-        success: function (data) {//请求成功后调用的函数
-            completeHandler(data);
-            $.AMUI.progress.done();
-        }
-    })
-}
+// /**
+//  * Http post 同步请求
+//  * @param url 请求地址
+//  * @param param 请求参数
+//  * @param completeHandler 回调函数
+//  */
+// function doPostSync(url, param, completeHandler) {
+//     url = addCtxToUrl(url);
+//     $.AMUI.progress.start();
+//     $.ajax({
+//         url: url,
+//         async: false,
+//         type: "POST",//请求方式
+//         dataType: "json",//返回参数的类型
+//         // contentType:"utf-8",//发送请求的编码方式
+//         data: param,
+//         success: function (data) {//请求成功后调用的函数
+//             completeHandler(data);
+//             $.AMUI.progress.done();
+//         }
+//     })
+// }
 
 /**
  * Http get 请求
@@ -544,35 +533,27 @@ function doGet(url, param, completeHandler) {
     })
 }
 
-/**
- * Http get html 请求
- * @param url 请求地址
- * @param param 请求参数
- * @param completeHandler 回调函数
- */
-function doGetHtml(url, param, completeHandler) {
-    url = addCtxToUrl(url);
-    $.ajax({
-        url: url,
-        type: "GET",//请求方式
-        dataType: "html",//返回参数的类型
-        contentType: "utf-8",//发送请求的编码方式
-        data: param,
-        success: function (data) {//请求成功后调用的函数
-            completeHandler(data);
-        }
-    })
-}
+// /**
+//  * Http get html 请求
+//  * @param url 请求地址
+//  * @param param 请求参数
+//  * @param completeHandler 回调函数
+//  */
+// function doGetHtml(url, param, completeHandler) {
+//     url = addCtxToUrl(url);
+//     $.ajax({
+//         url: url,
+//         type: "GET",//请求方式
+//         dataType: "html",//返回参数的类型
+//         contentType: "utf-8",//发送请求的编码方式
+//         data: param,
+//         success: function (data) {//请求成功后调用的函数
+//             completeHandler(data);
+//         }
+//     })
+// }
 
-/**
- * 统一的弹框提示
- */
-function alert(title, message, buttonTitle) {
-    $(".alert-modal-message").html(message);
-    $(".alert-modal-title").html(title);
-    $(".alert-modal-button").html(buttonTitle);
-    $('#alert-modal').modal('open');
-}
+
 
 /**
  * 统一的弹框提示
@@ -584,19 +565,7 @@ function alert(message) {
     $('#alert-modal').modal('open');
 }
 
-// /**
-//  * 加载动画
-//  */
-// function loadingModal() {
-//     $('#loading-modal').modal('open');
-// }
-//
-// /**
-//  * 结束加载动画
-//  */
-// function cloasloadingModal() {
-//     $('#loading-modal').modal('close');
-// }
+
 
 /**
  * 统一的错误提示
@@ -627,7 +596,7 @@ function uploadFile(completeHandler, target) {
 function initUploadModal(completeHandler) {
     var $uploadTips = $('#upload-modal');
     $uploadTips.html(template('tpl-uploadTips', null));
-    var $link = '/upload/uploadmultipartfile';
+    var $link = '/upload/uploadMultipartFile';
     $link = addCtxToUrl($link);
     var upload = $('#uploadFileWidget').AmazeuiUpload({
         url: $link,
@@ -818,7 +787,7 @@ $.fn.serializeChildListJson = function (parent) {
         jsonArr.push($obj)
     });
     parent['childList'] = jsonArr;
-    return JSON.stringify(parent);
+    return parent;
 };
 
 /**
@@ -886,7 +855,7 @@ function serializeChildFromJson(arr) {
  */
 function eachBreadCrumbs($url, $title, $isStartPage) {
     var $temp;
-    var breadCrumbs = justEachBreadCrumbs($isStartPage,$url);
+    var breadCrumbs = justEachBreadCrumbs($isStartPage, $url);
     $temp = {};
     $temp.breadCrumbsUrl = $url;
     $temp.breadCrumbsTitle = $title;
@@ -898,13 +867,13 @@ function eachBreadCrumbs($url, $title, $isStartPage) {
  * 遍历面包屑生成json 数组
  * @returns {Array}
  */
-function justEachBreadCrumbs($isStartPage,$url) {
+function justEachBreadCrumbs($isStartPage, $url) {
     var $breadCrumbs = [];
     if (!$isStartPage) {
         $breadCrumbs = getCookie("breadCrumbsStr");
         $.each($breadCrumbs, function (i, e) {
             if ($url === e.breadCrumbsUrl) {
-                $breadCrumbs = $breadCrumbs.slice(0,i);
+                $breadCrumbs = $breadCrumbs.slice(0, i);
             }
         })
     }
@@ -1039,7 +1008,7 @@ function delCookie(name) {
     exp.setTime(exp.getTime() - 1);
     var cval = getCookie(name);
     if (cval != null)
-        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()+";path=/";
+        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString() + ";path=/";
 }
 
 /**
@@ -1050,7 +1019,7 @@ function delCookie(name) {
 function getCookie(name) {
     var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
     if (arr = document.cookie.match(reg))
-        return  JSON.parse(decodeURIComponent(arr[2]));
+        return JSON.parse(decodeURIComponent(arr[2]));
     else
         return null;
 }
@@ -1064,5 +1033,5 @@ function setCookie(name, value) {
     var Days = 30;
     var exp = new Date();
     exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-    document.cookie = name + "=" + encodeURIComponent(JSON.stringify(value)) + ";expires=" + exp.toGMTString()+";path=/";
+    document.cookie = name + "=" + encodeURIComponent(JSON.stringify(value)) + ";expires=" + exp.toGMTString() + ";path=/";
 }

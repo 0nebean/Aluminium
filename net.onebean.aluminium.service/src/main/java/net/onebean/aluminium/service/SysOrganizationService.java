@@ -1,6 +1,6 @@
 package net.onebean.aluminium.service;
-import net.onebean.core.IBaseBiz;
-import net.onebean.aluminium.VO.OrgTree;
+import net.onebean.core.base.IBaseBiz;
+import net.onebean.aluminium.vo.OrgTree;
 import net.onebean.aluminium.model.SysOrganization;
 import net.onebean.aluminium.model.SysUser;
 
@@ -17,8 +17,10 @@ public interface SysOrganizationService extends IBaseBiz<SysOrganization> {
     /**a
      * 异步查找子节点,每次查找一级
      * @author 0neBean
-     * @param parentId
-     * @return
+     * @param parentId 父级ID
+     * @param selfId 自己的ID
+     * @param currentUser 当前登录用户
+     * @return list
      */
     List<OrgTree> findChildAsync(Long parentId,Long selfId,SysUser currentUser);
 
@@ -48,4 +50,10 @@ public interface SysOrganizationService extends IBaseBiz<SysOrganization> {
      * @return
      */
     Integer findChildOrderNextNum(Long parentId);
+    /**
+     * 删除机构
+     * @param id 主键
+     * @return bool
+     */
+    Boolean deleteOrg(Object id);
 }

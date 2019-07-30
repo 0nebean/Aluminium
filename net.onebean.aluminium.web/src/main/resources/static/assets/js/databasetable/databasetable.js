@@ -11,7 +11,7 @@ function generatedCode(id) {
     }
     var url = "/databasetable/generate"
     var completeHandler = function (data) {
-        alert("提示",data.msg,"好的")
+        alert("提示",data,"好的")
     }
     doPost(url,{id:id},completeHandler)
 }

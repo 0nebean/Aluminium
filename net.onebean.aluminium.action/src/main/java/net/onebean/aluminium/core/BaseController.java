@@ -3,20 +3,22 @@ package net.onebean.aluminium.core;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import net.onebean.core.ConditionMap;
-import net.onebean.core.IBaseBiz;
-import net.onebean.core.ListPageQuery;
-import net.onebean.core.Pagination;
-import net.onebean.core.extend.Sort;
-import net.onebean.core.form.Parse;
-import net.onebean.core.model.BaseIncrementIdModel;
 import net.onebean.aluminium.common.dictionary.DictionaryUtils;
 import net.onebean.aluminium.model.SysUser;
 import net.onebean.aluminium.security.SpringSecurityUtil;
+import net.onebean.core.base.IBaseBiz;
+import net.onebean.core.extend.Sort;
+import net.onebean.core.form.Parse;
+import net.onebean.core.model.BaseIncrementIdModel;
+import net.onebean.core.query.ConditionMap;
+import net.onebean.core.query.ListPageQuery;
+import net.onebean.core.query.Pagination;
 import net.onebean.util.CollectionUtil;
 import net.onebean.util.DateUtils;
 import net.onebean.util.ReflectionUtils;
 import net.onebean.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,8 @@ import java.util.stream.Collectors;
  * @param <S>
  */
 public abstract  class BaseController <M extends  BaseIncrementIdModel,S extends IBaseBiz<M>> {
+
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      *
@@ -202,7 +206,7 @@ public abstract  class BaseController <M extends  BaseIncrementIdModel,S extends
         query.setConditions(map);
         query.setPagination(page);
         query.setSort(sort);
-        dataList = baseService.find(query,dp);
+        dataList = baseService.find(dp,query);
     }
 
     /**

@@ -72,11 +72,11 @@
     $('body').on('selected.tree.amui','#tree-template',function(){
         var url = "/sysuser/finduserbyorgid/";
         var orgId = $(this).tree('selectedItems')[0].id;
-        var param = {orgId:orgId};
-        doGet(url,param,function(res){
-            $('#linkageDataSelector').html(template('userOptinTempl', res.data))
+        url = url+orgId;
+        doPost(url,{},function(res){
+            $('#linkageDataSelector').html(template('userOptinTempl', res.datas));
         })
-    })
+    });
 
     /*选中用户事件*/
     function orgTreeLinkageUserSelectAction(businessInPutId) {

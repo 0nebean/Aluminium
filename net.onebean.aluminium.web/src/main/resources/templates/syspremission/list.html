@@ -89,8 +89,8 @@
     });
 
     function initDataTable() {
-        doGet("/syspremission/allmenutree", {}, function (res) {
-            $('#dataTable').html(template('tpl-syspremission', res.data));
+        doPost("/syspremission/allmenutree", {}, function (res) {
+            $('#dataTable').html(template('tpl-syspremission', res.datas));
         })
     }
 </script>
@@ -159,8 +159,7 @@
 
 <!--递归子模板-->
 <script id="tpl-syspremission-child" type="text/html">
-    <tr class={{if
-        $index%2==0}} "gradeX" {{else}} "even gradeC" {{/if}} data-id="{{id}}" data-pid="{{pid}}" isHide="false" hideChild="false">
+    <tr class={{if $index%2==0}} "gradeX" {{else}} "even gradeC" {{/if}} data-id="{{id}}" data-pid="{{pid}}" isHide="false" hideChild="false">
     <td>
         {{#blank}}
         {{if childList!=null}}

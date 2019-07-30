@@ -1,4 +1,4 @@
-package net.onebean.aluminium.VO;
+package net.onebean.aluminium.vo;
 
 
 public class SysOrganizationVo {

@@ -1,5 +1,5 @@
 package net.onebean.aluminium.service;
-import net.onebean.core.IBaseBiz;
+import net.onebean.core.base.IBaseBiz;
 import net.onebean.aluminium.model.SysPermissionRole;
 
 import java.util.List;

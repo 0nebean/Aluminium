@@ -1,7 +1,7 @@
-package net.onebean.aluminium.VO;
+package net.onebean.aluminium.vo;
 
-import net.onebean.core.BaseTree;
 import net.onebean.aluminium.model.SysPermission;
+import net.onebean.core.base.BaseTree;
 
 import java.util.List;
 

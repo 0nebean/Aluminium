@@ -25,9 +25,12 @@ public enum ErrorCodesEnum {
     //02
     NONE_QUERY_DATA("xxxx020001","没有对应的数据"),
     GET_DATE_ERR("xxxx020002","数据库查询数据异常"),
+    //06
+    ASSOCIATED_DATA_CANNOT_BE_DELETED("xxxx060001","关联数据不能删除"),
     //07
     JSON_CAST_ERROR("xxxx070001","序列化JSON异常"),
     REF_ERROR("xxxx070002","反射对象属性异常"),
+    GENERATE_FILE_FAILURE("xxxx070003","生成文件失败"),
     //99
     OTHER("xxxx999999","操作失败")
     ;

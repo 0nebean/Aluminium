@@ -1,6 +1,7 @@
 package net.onebean.aluminium.service;
-import net.onebean.core.IBaseBiz;
+
 import net.onebean.aluminium.model.CodeDatabaseField;
+import net.onebean.core.base.IBaseBiz;
 
 import java.util.List;
 

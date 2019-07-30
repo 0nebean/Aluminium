@@ -1,7 +1,7 @@
 package net.onebean.aluminium.dao;
 import org.apache.ibatis.annotations.Param;
 
-import net.onebean.core.BaseDao;
+import net.onebean.core.base.BaseDao;
 import net.onebean.aluminium.model.SysUser;
 
 import java.util.List;

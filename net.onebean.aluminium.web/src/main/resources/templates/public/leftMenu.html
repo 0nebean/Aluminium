@@ -22,8 +22,8 @@
 
     <script type="text/javascript">
         $(function(){
-            doGet("/syspremission/allpermissiontree",{},function (res) {
-                $('#sysMenu').html(template('sys-menu-templ', res.data));
+            doPost("/syspremission/allpermissiontree",{},function (res) {
+                $('#sysMenu').html(template('sys-menu-templ', res.datas));
                 activeMenuOnLoad();
             })
         })

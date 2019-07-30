@@ -171,10 +171,10 @@
         var $rulesTemp = {
             maxlength: 50, noChinese: true, remote: {/*菜单去重*/
                 type: "post",
-                url: "[(${ctx})]/syspremission/isrepeat",
+                url: "[(${ctx})]/syspremission/isPermissionRepeat",
                 data: {
                     reg: function () {
-                        return trim($("#url").val())
+                        return trim($("#name").val())
                     },
                     id: function () {
                         return trim($("#entityId").val())
@@ -182,13 +182,13 @@
                 },
                 dataFilter: function (res) {
                     res = JSON.parse(res);
-                    return res.flag;
+                    return res.datas;
                 }
             }
         };
         $url.rules("remove");
         try {
-            console.log('$(this).val() = '+$menuType.val());
+            console.log('$(this).val() = ' + $menuType.val());
             var temp = $menuType.val() === 'menu';
         } catch (e) {
             temp = false;
@@ -224,8 +224,8 @@
                     premissionName: true,
                     remote: {/*菜单去重*/
                         type: "post",
-                        url: "[(${ctx})]/syspremission/isrepeat",
-                        data: {
+                        url: "[(${ctx})]/syspremission/isPermissionRepeat",
+                        data:{
                             reg: function () {
                                 return trim($("#name").val())
                             },
@@ -235,7 +235,7 @@
                         },
                         dataFilter: function (res) {
                             res = JSON.parse(res);
-                            return res.flag;
+                            return res.datas;
                         }
                     }
                 },

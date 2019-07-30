@@ -139,15 +139,19 @@
         var orderBy = $("#orderBySelector").val().split('-')[0];
         var sort = $("#orderBySelector").val().split('-')[1];
         var param = {
-            orderBy: orderBy,
-            sort: sort,
-            currentPage: currentPage,
-            pageSize: pageSize,
-            conditionList: formatQueryFromParam()
+            sort: {
+                orderBy: orderBy,
+                sort: sort
+            },
+            page: {
+                currentPage: currentPage,
+                pageSize: pageSize
+            },
+            data: formatQueryFromParam()
         };
-        doGet("/databasetable/list", param, function (res) {
-            $('#dataTable').html(template('tpl-databasetable', res.data));
-            $('#pagination').html(template('tpl-pagination', res.pagination))
+        doPost("/databasetable/list", param, function (res) {
+            $('#dataTable').html(template('tpl-databasetable', res.datas));
+            $('#pagination').html(template('tpl-pagination', res.page))
         })
     }
 

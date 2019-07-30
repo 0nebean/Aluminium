@@ -1,6 +1,7 @@
 package net.onebean.aluminium.dao;
-import net.onebean.core.BaseDao;
+
 import net.onebean.aluminium.model.CodeDatabaseField;
+import net.onebean.core.base.BaseDao;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -129,10 +129,20 @@
         var currentPage = $("#tpl-pagination").attr("currentPage");
         var orderBy = $("#orderBySelector").val().split('-')[0];
         var sort = $("#orderBySelector").val().split('-')[1];
-        var param = {orderBy: orderBy, sort: sort, currentPage: currentPage, pageSize: pageSize, conditionList: formatQueryFromParam()};
-        doGet("/sysuser/list",param,function (res) {
-            $('#dataTable').html(template('tpl-sysuser', res.data));
-            $('#pagination').html(template('tpl-pagination', res.pagination));
+        var param = {
+            sort: {
+                orderBy: orderBy,
+                sort: sort
+            },
+            page: {
+                currentPage: currentPage,
+                pageSize: pageSize
+            },
+            data: formatQueryFromParam()
+        };
+        doPost("/sysuser/list",param,function (res) {
+            $('#dataTable').html(template('tpl-sysuser', res.datas));
+            $('#pagination').html(template('tpl-pagination', res.page));
         })
     }
 

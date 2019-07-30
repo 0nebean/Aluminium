@@ -1,13 +1,14 @@
-package net.onebean.aluminium.VO;
+package net.onebean.aluminium.vo;
 
-import net.onebean.core.BaseTree;
+import net.onebean.core.base.BaseTree;
+import net.onebean.aluminium.model.SysOrganization;
 
 import java.util.List;
 
 /**
  * 组织树模型
  */
-public class TreeModel extends BaseTree {
+public class OrgTree extends BaseTree {
 
     public final static String TYPE_ITEM = "item";
     public final static String TYPE_FOLDER = "folder";
@@ -16,22 +17,22 @@ public class TreeModel extends BaseTree {
      * ID
      */
     private Long id;
-    private List<Object> childList;
-    private List<Object> dataList;
+    private List<OrgTree> childList;
+    private List<SysOrganization> dataList;
 
-    public List<Object> getDataList() {
+    public List<SysOrganization> getDataList() {
         return dataList;
     }
 
-    public void setDataList(List<Object> dataList) {
+    public void setDataList(List<SysOrganization> dataList) {
         this.dataList = dataList;
     }
 
-    public List<Object> getChildList() {
+    public List<OrgTree> getChildList() {
         return childList;
     }
 
-    public void setChildList(List<Object> childList) {
+    public void setChildList(List<OrgTree> childList) {
         this.childList = childList;
     }
 

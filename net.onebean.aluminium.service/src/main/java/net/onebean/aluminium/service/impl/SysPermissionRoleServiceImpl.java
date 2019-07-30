@@ -1,6 +1,6 @@
 package net.onebean.aluminium.service.impl;
 import org.springframework.stereotype.Service;
-import net.onebean.core.BaseBiz;
+import net.onebean.core.base.BaseBiz;
 import net.onebean.aluminium.model.SysPermissionRole;
 import net.onebean.aluminium.service.SysPermissionRoleService;
 import net.onebean.aluminium.dao.SysPermissionRoleDao;

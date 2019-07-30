@@ -120,14 +120,14 @@
     });
 
     function initDataTable(){
-        var pageSize = $("#limitSelector").val()
-        var currentPage = $("#tpl-pagination").attr("currentPage")
-        var orderBy = $("#orderBySelector").val().split('-')[0]
-        var sort = $("#orderBySelector").val().split('-')[1]
-        var param = {orderBy: orderBy, sort: sort, currentPage: currentPage, pageSize: pageSize, conditionList: formatQueryFromParam()}
+        var pageSize = $("#limitSelector").val();
+        var currentPage = $("#tpl-pagination").attr("currentPage");
+        var orderBy = $("#orderBySelector").val().split('-')[0];
+        var sort = $("#orderBySelector").val().split('-')[1];
+        var param = {sort: {orderBy: orderBy, sort: sort}, page: {currentPage: currentPage,pageSize: pageSize}, data: formatQueryFromParam()};
         doGet("/${mapping}/list",param,function (res) {
-            $('#dataTable').html(template('tpl-${mapping}', res.data));
-            $('#pagination').html(template('tpl-pagination', res.pagination))
+            $('#dataTable').html(template('tpl-${mapping}', res.datas));
+            $('#pagination').html(template('tpl-pagination', res.page))
         })
     }
 

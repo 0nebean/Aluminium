@@ -1,22 +1,21 @@
 package net.onebean.aluminium.service.impl;
 
-import net.onebean.core.BaseBiz;
-import net.onebean.core.form.Parse;
-import net.onebean.aluminium.VO.OrgTree;
 import net.onebean.aluminium.common.dataPerm.DataPermUtils;
-import net.onebean.aluminium.common.error.BusinessException;
 import net.onebean.aluminium.common.error.ErrorCodesEnum;
 import net.onebean.aluminium.dao.SysOrganizationDao;
 import net.onebean.aluminium.model.SysOrganization;
 import net.onebean.aluminium.model.SysUser;
 import net.onebean.aluminium.service.SysOrganizationService;
 import net.onebean.aluminium.service.SysUserService;
+import net.onebean.aluminium.vo.OrgTree;
+import net.onebean.core.base.BaseBiz;
+import net.onebean.core.error.BusinessException;
+import net.onebean.core.form.Parse;
 import net.onebean.util.CollectionUtil;
 import net.onebean.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -196,5 +195,16 @@ public class SysOrganizationServiceImpl extends BaseBiz<SysOrganization, SysOrga
     public Integer findChildOrderNextNum(Long parentId) {
         Integer res = baseDao.findChildOrderNextNum(parentId);
         return (null == res)?0:res;
+    }
+
+    @Override
+    public Boolean deleteOrg(Object id) {
+        if (CollectionUtil.isNotEmpty(sysUserService.findUserByOrgID(id))) {
+            throw new BusinessException(ErrorCodesEnum.ASSOCIATED_DATA_CANNOT_BE_DELETED.code(),"该机构关联了用户不能删除!");
+        }
+        if (!this.deleteSelfAndChildById(Parse.toLong(id))) {
+            throw new BusinessException(ErrorCodesEnum.ASSOCIATED_DATA_CANNOT_BE_DELETED.code(),"该机构下级机构关联了用户不能删除!");
+        }
+        return true;
     }
 }

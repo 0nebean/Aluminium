@@ -1,12 +1,11 @@
 package net.onebean.aluminium.dao;
 
-import net.onebean.core.BaseDao;
-import net.onebean.aluminium.VO.MenuTree;
+import net.onebean.core.base.BaseDao;
+import net.onebean.aluminium.vo.MenuTree;
 import net.onebean.aluminium.model.SysPermission;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 public interface SysPermissionDao extends BaseDao<SysPermission> {
 
