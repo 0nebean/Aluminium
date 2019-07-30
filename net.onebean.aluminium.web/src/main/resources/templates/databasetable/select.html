@@ -77,11 +77,11 @@
             submitHandler: function(form) { //验证成功时调用
                 var param = $('#DataFrom').serializeJson();
                 var url = "/databasetable/isRepeatTable/";
-                var completeHandler = function (data) {
-                    if(data.datas){
+                var completeHandler = function (resp) {
+                    if(resp.datas){
                         routingPage("/databasetable/add/"+param.tableName,'添加数据库模型');
                     }else{
-                        alert(data.errMsg);
+                        alert(resp.errMsg);
                     }
                 };
                 doPost(url,param,completeHandler);

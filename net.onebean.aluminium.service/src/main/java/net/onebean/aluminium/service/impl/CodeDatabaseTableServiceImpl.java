@@ -90,7 +90,7 @@ public class CodeDatabaseTableServiceImpl extends BaseBiz<CodeDatabaseTable, Cod
     public Boolean isRepeatTable(String tableName) {
         Condition param = Condition.parseModelCondition("tableName@string@eq$");
         param.setValue(tableName);
-        return CollectionUtil.isNotEmpty(this.find(null, param));
+        return CollectionUtil.isEmpty(this.find(null, param));
     }
 
     @Override
