@@ -81,7 +81,7 @@ function removeRU() {
         }
     });
     ids = ids.substr(0,ids.length-1);
-    doPost("/sysrole/removeroleuser",{urIds:ids},function(res){
+    doPost("/sysrole/removeroleuser",{data:ids},function(res){
         if(res.errCode === '0'){
             initRoleUserList(userId);
         }

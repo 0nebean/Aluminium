@@ -481,7 +481,7 @@ function doPost(url, param, completeHandler) {
             if (data.errCode === '0'){
                 completeHandler(data);
             }else{
-                alert("请求异常,错误码 ["+data.errCode+"],"+"错误信息 ["+data.errCode+"]");
+                alert("请求异常,错误码 ["+data.errCode+"],"+"错误信息 ["+data.errMsg+"]");
             }
             $.AMUI.progress.done();
         }
