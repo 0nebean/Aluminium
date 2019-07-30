@@ -88,13 +88,13 @@
                                        id="example-r">
                                     <thead>
                                     <tr>
-                                    <#if field_arr?exists>
-                                        <#list field_arr as item>
-                                        <#if item.columnName != 'id' && item.columnName != 'createTime' && item.columnName != 'updateTime' && item.columnName != 'isDeleted' && item.columnName != 'operatorId'  && item.columnName != 'operatorName'>
-                                            <th>${item.annotation}</th>
-                                        </#if>
-                                        </#list>
+                            <#if field_arr?exists>
+                                <#list field_arr as item>
+                                    <#if item.columnName != 'id' && item.columnName != 'createTime' && item.columnName != 'updateTime' && item.columnName != 'isDeleted' && item.columnName != 'operatorId'  && item.columnName != 'operatorName'>
+                                        <th>${item.annotation}</th>
                                     </#if>
+                                </#list>
+                            </#if>
                                     </tr>
                                     </thead>
                                     <tbody id="dataTable">
