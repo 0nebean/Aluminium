@@ -107,10 +107,12 @@
                                             <#if item.pageType == 'input_org_tree'>
                                                 <div class="am-form-group">
                                                     <label for="${item.columnName}" class="am-u-sm-3 am-form-label">${item.annotation} <span class="tpl-form-line-small-title">Tree</span></label>
-                                                    <div class="am-u-sm-9">
-                                                        <input type="hidden" name="${item.columnName}" id="${item.columnName}">
-                                                        <tree:org th:attr="businessInPutId='${item.columnName}'"/>
-                                                        <small th:unless="${r"${view}"}"><#if (item.page_description??)>${item.page_description}<#else>${item.annotation}</#if></small>
+                                                    <div class="am-u-sm-9"  th:with="pid=(${'$'}{entity.${item.columnName}} != null)?${'$'}{entity.${item.columnName}}:1">
+                                                        <input type="hidden" class="treeValue" name="${item.columnName}" id="${item.columnName}" th:value="${pid}">
+                                                        <input type="hidden" name="${item.columnName}" id="${item.columnName}" th:value="${r"${pid}"}">
+                                                        <tree:org th:attr="disabled=${r"${view}"},businessInPutId='${item.columnName}',value=${'$'}{entity.${item.columnName}},pid=${r"${pid}"}"  th:unless="${r"${add}"}"/>
+                                                        <tree:org th:attr="pid=${pid},businessInPutId='${item.columnName}'" th:if="${r"${add}"}"/>
+                                                        <small th:unless="${r"${view}"}">从机构树上选择一个机构</small>
                                                     </div>
                                                 </div>
                                             </#if>
