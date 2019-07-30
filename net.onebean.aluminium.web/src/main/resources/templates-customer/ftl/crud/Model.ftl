@@ -15,7 +15,7 @@ import net.onebean.core.model.InterfaceBaseModel;
 
 <#if fieldArr?exists>
     <#list fieldArr as item>
-        <#if item.column_type == 'BigDecimal'>
+        <#if item.databaseType == 'BigDecimal'>
 import java.math.BigDecimal;
             <#break>
         </#if>

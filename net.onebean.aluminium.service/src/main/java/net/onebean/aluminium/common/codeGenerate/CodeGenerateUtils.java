@@ -14,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * 生成代码 工具类
@@ -74,7 +77,7 @@ public class CodeGenerateUtils {
      * 生成树型代码
      * @param table 参数体
      */
-    private void generateTree(CodeDatabaseTable table) throws Exception{
+    private void generateTree(CodeDatabaseTable table){
     }
 
     /**
