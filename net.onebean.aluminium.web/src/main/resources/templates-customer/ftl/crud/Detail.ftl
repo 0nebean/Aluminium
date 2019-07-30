@@ -73,7 +73,7 @@
                                                 <div class="am-form-group">
                                                     <label for="isLock" class="am-u-sm-3 am-form-label">${item.annotation} <span class="tpl-form-line-small-title">Switch</span></label>
                                                     <div class="am-u-sm-9">
-                                                        <input type="checkbox" data-am-switch data-size="xs" data-on-color="success" data-off-color="default" th:checked="${'$'}{entity.${item.columnName} eq 1}" th:disabled="${r"${view}"}" name="${item.columnName}" id="${item.columnName}"/>
+                                                        <input type="checkbox" data-am-switch data-size="xs" data-on-color="success" data-off-color="default" th:checked="${'$'}{entity.${item.columnName} eq '1'}" th:disabled="${r"${view}"}" name="${item.columnName}" id="${item.columnName}"/>
                                                     </div>
                                                 </div>
                                             </#if>
