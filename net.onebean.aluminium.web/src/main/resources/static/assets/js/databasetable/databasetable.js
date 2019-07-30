@@ -9,9 +9,10 @@ function generatedCode(id) {
     if(typeof(id) == 'undefined' || id == null){
         var id = $('#entityId').val();
     }
-    var url = "/databasetable/generate"
-    var completeHandler = function (data) {
-        alert("提示",data,"好的")
-    }
-    doPost(url,{id:id},completeHandler)
+    var url = "/databasetable/generate/";
+    url = url + id;
+    var completeHandler = function (resp) {
+        alert(resp.datas);
+    };
+    doPost(url,{},completeHandler)
 }
