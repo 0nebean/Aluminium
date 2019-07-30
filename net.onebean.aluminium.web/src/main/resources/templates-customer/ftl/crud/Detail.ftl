@@ -130,7 +130,7 @@
                                                 <div class="am-form-group">
                                                     <label for="${item.columnName}" class="am-u-sm-3 am-form-label">${item.annotation} <span class="tpl-form-line-small-title">Data</span></label>
                                                     <div class="am-u-sm-9">
-                                                        <input type="text" class="onebean-data-picker-data" id="${item.columnName}" name="${item.columnName}" placeholder="请选择${item.annotation}">
+                                                        <input type="text" class="onebean-data-picker-data" th:value="${'$'}{entity.${item.columnName}}" id="${item.columnName}" name="${item.columnName}" placeholder="请选择${item.annotation}">
                                                         <small th:unless="${r"${view}"}"><#if (item.page_description??)>${item.page_description}<#else>${item.annotation}</#if></small>
                                                     </div>
                                                 </div>
@@ -139,7 +139,7 @@
                                                 <div class="am-form-group">
                                                     <label for="${item.columnName}" class="am-u-sm-3 am-form-label">时间选择控件 <span class="tpl-form-line-small-title">Data</span></label>
                                                     <div class="am-u-sm-9">
-                                                        <input type="text" class="onebean-data-picker-time" th:attr="value=${'$'}{entity.${item.columnName}}" id="${item.columnName}" name="${item.columnName}" placeholder="请选择${item.annotation}">
+                                                        <input type="text" class="onebean-data-picker-time" th:value="${'$'}{entity.${item.columnName}}" id="${item.columnName}" name="${item.columnName}" placeholder="请选择${item.annotation}">
                                                         <small th:unless="${r"${view}"}"><#if (item.page_description??)>${item.page_description}<#else>${item.annotation}</#if></small>
                                                     </div>
                                                 </div>
