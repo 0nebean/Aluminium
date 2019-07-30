@@ -13,8 +13,8 @@ import net.onebean.core.model.InterfaceBaseDeletedModel;
 import net.onebean.core.model.InterfaceBaseModel;
 </#if>
 
-<#if fieldArr?exists>
-    <#list fieldArr as item>
+<#if field_arr?exists>
+    <#list field_arr as item>
         <#if item.databaseType == 'BigDecimal'>
 import java.math.BigDecimal;
             <#break>
