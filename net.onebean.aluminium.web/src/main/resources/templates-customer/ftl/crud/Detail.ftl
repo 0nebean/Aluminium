@@ -71,16 +71,9 @@
                                             </#if>
                                             <#if item.pageType == 'input_switch'>
                                                 <div class="am-form-group">
-                                                    <label for="${item.columnName}" class="am-u-sm-3 am-form-label">${item.annotation} <span class="tpl-form-line-small-title">Switch</span></label>
+                                                    <label for="isLock" class="am-u-sm-3 am-form-label">${item.annotation} <span class="tpl-form-line-small-title">Switch</span></label>
                                                     <div class="am-u-sm-9">
-                                                        <div class="tpl-switch">
-                                                            <input type="hidden" class="hide tpl-switch-hider" value=""/>
-                                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" th:checked="${'$'}{entity.${item.columnName} eq 1}" th:disabled="${r"${view}"}" name="${item.columnName}" id="${item.columnName}"/>
-                                                            <div class="tpl-switch-btn-view">
-                                                                <div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        <input type="checkbox" data-am-switch data-size="xs" data-on-color="success" data-off-color="default" th:checked="${'$'}{entity.${item.columnName} eq 1}" th:disabled="${r"${view}"}" name="${item.columnName}" id="${item.columnName}"/>
                                                     </div>
                                                 </div>
                                             </#if>
