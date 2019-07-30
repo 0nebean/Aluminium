@@ -107,7 +107,7 @@
                                             <#if item.pageType == 'input_org_tree'>
                                                 <div class="am-form-group">
                                                     <label for="orgId" class="am-u-sm-3 am-form-label">所属机构 <span class="tpl-form-line-small-title">Tree</span></label>
-                                                    <<div class="am-u-sm-9"  th:with="pid=(${'$'}{entity.${item.columnName}} != null)?${'$'}{entity.${item.columnName}}:1">
+                                                    <div class="am-u-sm-9"  th:with="pid=(${'$'}{entity.${item.columnName}} != null)?${'$'}{entity.${item.columnName}}:1">
                                                         <input type="hidden" class="treeValue" name="${item.columnName}" id="${item.columnName}" th:value="${r"${pid}"}">
                                                         <tree:org th:attr="disabled=${r"${view}"},businessInPutId='${item.columnName}',value=${'$'}{entity.${item.columnName}},pid=${r"${pid}"}"  th:unless="${r"${add}"}"/>
                                                         <tree:org th:attr="pid=${r"${pid}"},businessInPutId='${item.columnName}'" th:if="${r"${add}"}"/>
@@ -153,7 +153,7 @@
                                                 </th:block>
 
                                                 <th:block sec:authorize="hasPermission('$everyone','${premName}_SAVE')">
-                                                    <button type="button" class="am-btn am-btn-warning" th:onclick="'routingPage(\'/${mapping}/edit/'+${r"${entity.id}"}+'\')',\'编辑\'" th:if="${r"${view}"}">编辑</button>
+                                                    <button type="button" class="am-btn am-btn-warning" th:onclick="'routingPage(\'/sysuser/edit/'+${r"${entity.id}"}+'\',\''+编辑+'\')'" th:if="${r"${view}"}">编辑</button>
                                                 </th:block>
                                                 <button type="button" class="am-btn am-btn-danger" onClick="routingPage('/${mapping}/preview/')">返回</button>
                                             </div>
