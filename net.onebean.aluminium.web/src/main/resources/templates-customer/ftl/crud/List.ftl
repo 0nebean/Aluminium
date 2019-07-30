@@ -137,7 +137,17 @@
     <tr  class={{if $index%2==0}} "gradeX" {{else}} "even gradeC" {{/if}} >
 <#if field_arr?exists>
     <#list field_arr as item>
-    <td><#if (item_index == 1)><a href="javascript:;" onclick="routingPage('/${mapping}/view/{{data.id}}','查看${description}')"></#if>{{data.${item.columnName}}}<#if (item_index == 1)></a></#if></td>
+        <td>
+        <#if item.columnName != 'id' && item.columnName != 'createTime' && item.columnName != 'updateTime' && item.columnName != 'isDeleted' && item.columnName != 'operatorId'  && item.columnName != 'operatorName'>
+            <#if (item_index == 1)>
+                <a href="javascript:;" onclick="routingPage('/${mapping}/view/{{data.id}}','查看${description}')">
+            </#if>
+                {{data.${item.columnName}}}
+            <#if (item_index == 1)>
+                </a>
+            </#if>
+            </#if>
+        </td>
     </#list>
 </#if>
     <td>

@@ -32,7 +32,7 @@
 
                                     <#if field_arr?exists>
                                         <#list field_arr as item>
-                                            <#if item.columnName != 'id'>
+                                            <#if item.columnName != 'id' && item.columnName != 'createTime' && item.columnName != 'updateTime' && item.columnName != 'isDeleted' && item.columnName != 'operatorId'  && item.columnName != 'operatorName'>
                                             <#if item.pageType == 'input_text'>
                                                 <div class="am-form-group">
                                                     <label for="${item.columnName}" class="am-u-sm-3 am-form-label">${item.annotation} <span class="tpl-form-line-small-title">Text</span></label>
