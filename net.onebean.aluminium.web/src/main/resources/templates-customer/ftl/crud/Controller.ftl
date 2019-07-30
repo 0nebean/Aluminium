@@ -39,7 +39,7 @@ public class ${model_name}Controller extends BaseController<${model_name},${mode
     @RequestMapping(value = "preview")
     @Description(value = "预览列表页面")
     @PreAuthorize("hasPermission('$everyone','${premName}_PREVIEW')")
-    public String preview(Model model) {
+    public String preview() {
         return getView("list");
     }
 

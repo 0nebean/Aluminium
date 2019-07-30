@@ -125,7 +125,7 @@
         var orderBy = $("#orderBySelector").val().split('-')[0];
         var sort = $("#orderBySelector").val().split('-')[1];
         var param = {sort: {orderBy: orderBy, sort: sort}, page: {currentPage: currentPage,pageSize: pageSize}, data: formatQueryFromParam()};
-        doGet("/${mapping}/list",param,function (res) {
+        doPost("/${mapping}/list",param,function (res) {
             $('#dataTable').html(template('tpl-${mapping}', res.datas));
             $('#pagination').html(template('tpl-pagination', res.page))
         })
