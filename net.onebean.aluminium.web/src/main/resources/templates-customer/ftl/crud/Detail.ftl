@@ -120,7 +120,8 @@
                                                     <label for="${item.columnName}" class="am-u-sm-3 am-form-label">${item.annotation} <span class="tpl-form-line-small-title">Tree</span></label>
                                                     <div class="am-u-sm-9">
                                                         <input type="hidden" name="${item.columnName}" id="${item.columnName}">
-                                                        <tree:org-user th:attr="businessInPutId='${item.columnName}'"/>
+                                                        <tree:org-user th:attr="disabled=${r"${view}"},businessInPutId='${item.columnName}',value=${'$'}{entity.${item.columnName}}"  th:unless="${r"${add}"}"/>
+                                                        <tree:org-user th:attr="businessInPutId='${item.columnName}'" th:if="${r"${add}"}"/>
                                                         <small th:unless="${r"${view}"}"><#if (item.page_description??)>${item.page_description}<#else>${item.annotation}</#if></small>
                                                     </div>
                                                 </div>
@@ -138,7 +139,7 @@
                                                 <div class="am-form-group">
                                                     <label for="${item.columnName}" class="am-u-sm-3 am-form-label">时间选择控件 <span class="tpl-form-line-small-title">Data</span></label>
                                                     <div class="am-u-sm-9">
-                                                        <input type="text" class="onebean-data-picker-time" id="${item.columnName}" name="${item.columnName}" placeholder="请选择${item.annotation}">
+                                                        <input type="text" class="onebean-data-picker-time" th:attr="value=${'$'}{entity.${item.columnName}}" id="${item.columnName}" name="${item.columnName}" placeholder="请选择${item.annotation}">
                                                         <small th:unless="${r"${view}"}"><#if (item.page_description??)>${item.page_description}<#else>${item.annotation}</#if></small>
                                                     </div>
                                                 </div>
