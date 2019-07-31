@@ -41,11 +41,7 @@ public class UpLoadFileController {
     }
 
     /**
-     * 上传文件空间上传接口
-     * @param store
-     * @param request
-     * @return
-     * @throws Exception
+     * 根据URL下载文件再上传
      */
     @RequestMapping("downfile")
     public ResponseEntity<byte[]> uploadMultipartFile(@RequestParam("store")String store, HttpServletRequest request) throws Exception{

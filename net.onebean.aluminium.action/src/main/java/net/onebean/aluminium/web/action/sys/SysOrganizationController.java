@@ -9,7 +9,6 @@ import net.onebean.aluminium.model.SysOrganization;
 import net.onebean.aluminium.model.SysUser;
 import net.onebean.aluminium.security.SpringSecurityUtil;
 import net.onebean.aluminium.service.SysOrganizationService;
-import net.onebean.aluminium.service.SysUserService;
 import net.onebean.aluminium.vo.InitTreeReq;
 import net.onebean.aluminium.vo.OrgTree;
 import net.onebean.core.base.BasePaginationRequest;
@@ -19,7 +18,6 @@ import net.onebean.core.error.BusinessException;
 import net.onebean.core.extend.Sort;
 import net.onebean.core.query.Pagination;
 import net.onebean.util.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Description;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -36,9 +34,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/sysorg")
 public class SysOrganizationController extends BaseController<SysOrganization, SysOrganizationService> {
-
-    @Autowired
-    private SysUserService sysUserService;
 
     /**
      * 预览列表页面
