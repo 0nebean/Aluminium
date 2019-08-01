@@ -55,26 +55,7 @@ public class SysPermissionServiceImpl extends BaseBiz<SysPermission, SysPermissi
 
 
 	public List<SysPermission> findChildSync(SysUser currentUser) {
-		StringBuilder join = new StringBuilder();
-		join.append(" LEFT JOIN sys_permission_role spr on t.id = spr.permission_id");
-		join.append(" LEFT JOIN sys_role r on spr.role_id = r.id");
-		join.append(" LEFT JOIN sys_role_user sru on sru.sys_role_id = r.id");
-		join.append(" LEFT JOIN sys_user u on u.id = sru.sys_user_id");
-		join.append(" LEFT JOIN sys_organization o on u.org_id = o.id");
-		Map<String,Object> dp = dataPermUtils.dataPermFilter(currentUser,"o","t",join.toString());
-		StringBuilder sb = new StringBuilder();
-		if (null != dp.get("sql")){
-			String sql = dp.get("sql").toString();
-			sb.append(sql);
-		}
-		sb.append("AND   u.`id` = ");
-		sb.append(currentUser.getId());
-		sb.append(" AND spr.is_deleted = '0'");
-		sb.append(" AND r.is_deleted = '0'");
-		sb.append(" AND sru.is_deleted = '0'");
-		sb.append(" AND o.is_deleted = '0'");
-		sb.append(" AND u.is_deleted = '0'");
-		dp.put("sql",sb.toString());
+		Map<String,Object> dp = getDataPermissionSqlByCurrentLoginUser(currentUser);
 		return tree(this.findAll(dp));
 	}
 
@@ -130,9 +111,10 @@ public class SysPermissionServiceImpl extends BaseBiz<SysPermission, SysPermissi
 
 
 
-	public List<MenuTree> findChildAsync(Long parentId,Long selfId){
+	public List<MenuTree> findChildAsync(Long parentId,Long selfId,SysUser currentUser){
 		List<MenuTree> res = new ArrayList<>();
-		List<MenuTree> list = baseDao.findChildAsync(parentId);
+		Map<String,Object> dp = getDataPermissionSqlByCurrentLoginUser(currentUser);
+		List<MenuTree> list = baseDao.findChildAsync(parentId,dp);
 		for (MenuTree o : list) {//某些业务场景 节点不能选择自己作为父级节点,故过滤掉所有自己及以下节点
 			if (null == selfId || (Parse.toInt(o.getId()) != selfId) || selfId == 1) {
 				res.add(o);
@@ -370,11 +352,35 @@ public class SysPermissionServiceImpl extends BaseBiz<SysPermission, SysPermissi
 	}
 
 	@Override
-	public Boolean savePremissionRole(String premIds, String roleId) {
+	public Boolean savePermissionRole(String premIds, String roleId) {
 		sysPermissionRoleService.deteleByRoleId(Parse.toLong(roleId));
 		if (StringUtils.isNotEmpty(premIds)) {
 			sysPermissionRoleService.insertBatch(premIds, roleId);
 		}
 		return true;
+	}
+
+	private Map<String ,Object> getDataPermissionSqlByCurrentLoginUser(SysUser currentUser){
+		StringBuilder join = new StringBuilder();
+		join.append(" LEFT JOIN sys_permission_role spr on t.id = spr.permission_id");
+		join.append(" LEFT JOIN sys_role r on spr.role_id = r.id");
+		join.append(" LEFT JOIN sys_role_user sru on sru.sys_role_id = r.id");
+		join.append(" LEFT JOIN sys_user u on u.id = sru.sys_user_id");
+		join.append(" LEFT JOIN sys_organization o on u.org_id = o.id");
+		Map<String,Object> dp = dataPermUtils.dataPermFilter(currentUser,"o","t",join.toString());
+		StringBuilder sb = new StringBuilder();
+		if (null != dp.get("sql")){
+			String sql = dp.get("sql").toString();
+			sb.append(sql);
+		}
+		sb.append(" AND u.`id` = ");
+		sb.append(currentUser.getId());
+		sb.append(" AND spr.is_deleted = '0'");
+		sb.append(" AND r.is_deleted = '0'");
+		sb.append(" AND sru.is_deleted = '0'");
+		sb.append(" AND o.is_deleted = '0'");
+		sb.append(" AND u.is_deleted = '0'");
+		dp.put("sql",sb.toString());
+		return dp;
 	}
 }

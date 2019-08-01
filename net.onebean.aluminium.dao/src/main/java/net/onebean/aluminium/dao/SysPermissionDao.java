@@ -1,11 +1,13 @@
 package net.onebean.aluminium.dao;
 
+import net.onebean.aluminium.vo.OrgTree;
 import net.onebean.core.base.BaseDao;
 import net.onebean.aluminium.vo.MenuTree;
 import net.onebean.aluminium.model.SysPermission;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SysPermissionDao extends BaseDao<SysPermission> {
 
@@ -18,10 +20,11 @@ public interface SysPermissionDao extends BaseDao<SysPermission> {
 
     /**
      * 异步查找子节点,每次查找一级
-     * @param parentId
+     * @param parentId 父级id
+     * @param dp 数据权限sql
      * @return
      */
-    List<MenuTree> findChildAsync(@Param("parentId") Long parentId);
+    List<MenuTree> findChildAsync(@Param("parentId") Long parentId, @Param("dp") Map<String,Object> dp);
 
     /**
      * 根据id删除自身以及自项

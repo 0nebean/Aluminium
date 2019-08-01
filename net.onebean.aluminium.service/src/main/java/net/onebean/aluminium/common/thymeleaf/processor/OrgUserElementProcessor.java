@@ -55,6 +55,8 @@ public class OrgUserElementProcessor extends OneBeanBaseAbstractElementTagProces
         final IModel input = modelFactory.createModel();
         IOpenElementTag inputStart = modelFactory.createOpenElementTag("input");
         final ICloseElementTag inputEnd = modelFactory.createCloseElementTag("input");
+        inputStart = modelFactory.setAttribute(inputStart,"id","orgTreeSelectorInput");
+
         inputStart = modelFactory.setAttribute(inputStart,"id","orgLinkageUserTreeSelector");
         inputStart = modelFactory.setAttribute(inputStart,"type","text");
         inputStart = modelFactory.setAttribute(inputStart,"class","tpl-form-input");
@@ -77,6 +79,7 @@ public class OrgUserElementProcessor extends OneBeanBaseAbstractElementTagProces
         /*模态弹窗模板*/
         Object templFragmentObj = computeFragment(context, "~{public/orgUserTree :: orgTreeLinkageUserTips}");
         final IModel treeTempl = modelFactory.parse(context.getTemplateData(),templFragmentObj.toString());
+
 
         /*用户选项option模板*/
         Object optionTemplFragmentObj = computeFragment(context, "~{public/orgUserTree :: orgTreeLinkageUserOptionTips}");

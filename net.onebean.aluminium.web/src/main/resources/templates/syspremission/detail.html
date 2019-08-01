@@ -188,7 +188,6 @@
         };
         $url.rules("remove");
         try {
-            console.log('$(this).val() = ' + $menuType.val());
             var temp = $menuType.val() === 'menu';
         } catch (e) {
             temp = false;
@@ -199,7 +198,6 @@
             $menuArgumentFiled.show();
             $url.rules("add", $rulesTemp);
         } else {
-            console.log('一开始就隐藏了一次');
             $('#urlTips').show();
             $('#url-error').remove();
             $menuArgumentFiled.hide();

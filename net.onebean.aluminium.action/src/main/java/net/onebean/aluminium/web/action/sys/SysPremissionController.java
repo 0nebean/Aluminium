@@ -12,7 +12,6 @@ import net.onebean.aluminium.security.SpringSecurityUtil;
 import net.onebean.aluminium.service.SysPermissionService;
 import net.onebean.aluminium.vo.InitTreeReq;
 import net.onebean.aluminium.vo.MenuTree;
-import net.onebean.aluminium.vo.PermissionurlRepeatReq;
 import net.onebean.aluminium.vo.PremissionRoleReq;
 import net.onebean.core.base.BasePaginationRequest;
 import net.onebean.core.base.BasePaginationResponse;
@@ -209,7 +208,8 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
             logger.debug("method MenuTree request = " + JSON.toJSONString(request, SerializerFeature.WriteMapNullValue));
             Long parentId = Optional.ofNullable(request).map(BasePaginationRequest::getData).map(InitTreeReq::getParentId).orElse(null);
             Long selfId = Optional.ofNullable(request).map(BasePaginationRequest::getData).map(InitTreeReq::getSelfId).orElse(null);
-            response = BasePaginationResponse.ok(baseService.findChildAsync(parentId,selfId));
+            SysUser currentUser = SpringSecurityUtil.getCurrentLoginUser();
+            response = BasePaginationResponse.ok(baseService.findChildAsync(parentId,selfId,currentUser));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -312,20 +312,20 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
     @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_PREMISSION_SAVE_ROLE_PREM')")
     public BaseResponse<Boolean> savePremissionRole(@RequestBody BasePaginationRequest<PremissionRoleReq> req) {
-        logger.info("method savePremissionRole access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
+        logger.info("method savePermissionRole access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BaseResponse<Boolean> response = new BaseResponse<>();
         try {
             String premIds = Optional.ofNullable(req).map(BasePaginationRequest::getData).map(PremissionRoleReq::getPremIds).orElse("");
             String roleId = Optional.ofNullable(req).map(BasePaginationRequest::getData).map(PremissionRoleReq::getRoleId).orElse("");
-            response = BaseResponse.ok(baseService.savePremissionRole(premIds,roleId));
+            response = BaseResponse.ok(baseService.savePermissionRole(premIds,roleId));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
-            logger.info("method savePremissionRole BusinessException ex = ", e);
+            logger.info("method savePermissionRole BusinessException ex = ", e);
         } catch (Exception e) {
             response.setErrCode(ErrorCodesEnum.OTHER.code());
             response.setErrMsg(ErrorCodesEnum.OTHER.msg());
-            logger.error("method savePremissionRole catch Exception e = ", e);
+            logger.error("method savePermissionRole catch Exception e = ", e);
         }
         return response;
     }

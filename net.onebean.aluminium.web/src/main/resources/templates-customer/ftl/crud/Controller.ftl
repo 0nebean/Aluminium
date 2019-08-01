@@ -155,7 +155,7 @@ public class ${model_name}Controller extends BaseController<${model_name},${mode
     @RequestMapping("list")
     @ResponseBody
     @SuppressWarnings("unchecked")
-    @PreAuthorize("hasPermission('$everyone','PERM_CODE_DATABASE_MODEL_LIST')")
+    @PreAuthorize("hasPermission('$everyone','${premName}_LIST')")
     public BasePaginationResponse<${model_name}> list (@RequestBody BasePaginationRequest<String> request){
         logger.info("access"+ DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BasePaginationResponse<${model_name}> response = new BasePaginationResponse<>();

@@ -36,9 +36,10 @@ public interface SysPermissionService extends IBaseBiz<SysPermission> {
 	 * 异步查找子节点,每次查找一级
 	 * @param parentId 父ID
 	 * @param selfId 数据自己的ID
+	 * @param currentUser 当前登录用户
 	 * @return List<MenuTree>
 	 */
-	List<MenuTree> findChildAsync(Long parentId,Long selfId);
+	List<MenuTree> findChildAsync(Long parentId,Long selfId,SysUser currentUser);
 	/**
 	 * 包装方法,将机构包装成treeList
 	 * @param before 加工前的 List<SysPermission>
@@ -97,5 +98,5 @@ public interface SysPermissionService extends IBaseBiz<SysPermission> {
 	 * @param roleId 角色ID
 	 * @return bool
 	 */
-    Boolean savePremissionRole(String premIds, String roleId);
+    Boolean savePermissionRole(String premIds, String roleId);
 }
