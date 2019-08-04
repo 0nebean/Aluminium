@@ -1,10 +1,10 @@
 [![GitHub release](https://img.shields.io/badge/release-1.0.0-28a745.svg)](https://github.com/0nebean/com.alibaba.druid-0nebean.custom/releases)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-![](https://img.shields.io/badge/support-chemical--el-28a745.svg)
-![](https://img.shields.io/badge/support-onebean--data-28a745.svg)
-![](https://img.shields.io/badge/dependency-spring--15.20-28a745.svg)
-![](https://img.shields.io/badge/middleware-mysql-28a745.svg)
+![](https://img.shields.io/badge/support-chemical--el-yellowgreen.svg)
+![](https://img.shields.io/badge/support-onebean--data-red.svg)
+![](https://img.shields.io/badge/dependency-spring--15.20-blue.svg)
+![](https://img.shields.io/badge/middleware-mysql-lightgrey.svg)
 
 
 Introduction
