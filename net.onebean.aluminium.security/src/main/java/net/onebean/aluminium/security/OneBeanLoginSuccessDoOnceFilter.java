@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author 0neBean
  */
 @Service
-@WebFilter(filterName = "onebeanFilter", urlPatterns = "/*")
+@WebFilter(filterName = "OneBeanLoginSuccessDoOnceFilter", urlPatterns = "/*")
 public class OneBeanLoginSuccessDoOnceFilter implements Filter {
 
     @Override

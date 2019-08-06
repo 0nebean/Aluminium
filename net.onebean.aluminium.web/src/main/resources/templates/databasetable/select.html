@@ -81,10 +81,11 @@
                     if(resp.datas){
                         routingPage("/databasetable/add/"+param.tableName,'添加数据库模型');
                     }else{
-                        alert('');
+                        alert('该数据模型已存在');
                     }
                 };
-                doPost(url,param,completeHandler);
+                console.log('param = '+JSON.stringify(param))
+                doPost(url,{data:param},completeHandler);
             }
         });
     }
