@@ -49,9 +49,8 @@ public class OneBeanWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         myAuthenticationFailureHandler.setDefaultFailureUrl("/error/401");
 
-        String[] unSecuredUrls = { "/system_assets/**", "/assets/**","/druid/**","/error/**"};
         http.authorizeRequests()
-                .antMatchers(unSecuredUrls).permitAll()
+                .antMatchers(OneBeanAccessWhiteList.unSecuredUrls).permitAll()
                 .anyRequest().authenticated() //任何请求,登录后可以访问
                 .and()
                 .formLogin()
