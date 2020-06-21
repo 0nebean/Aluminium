@@ -12,22 +12,13 @@
 
     <artifactId>net.onebean.aluminium.dao</artifactId>
     <name>net.onebean.aluminium.dao</name>
-    <url>http://maven.apache.org</url>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
-
-
         <dependency>
             <groupId>net.onebean</groupId>
             <artifactId>net.onebean.core</artifactId>
-            <version>${net.onebean.core.version}</version>
         </dependency>
-
-
     </dependencies>
 
     <build>

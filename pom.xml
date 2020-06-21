@@ -6,10 +6,9 @@
 
     <parent>
         <groupId>net.onebean</groupId>
-        <artifactId>onebean.boot.stater</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>net.onebean.dependencies</artifactId>
+        <version>1.0.0.RELEASE</version>
     </parent>
-
 
     <artifactId>net.onebean.aluminium</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -20,12 +19,6 @@
     <url>https://github.com/0nebean/Aluminium</url>
 
     <properties>
-        <net.onebean.aluminium.dao.version>${child.model.version}</net.onebean.aluminium.dao.version>
-        <net.onebean.aluminium.service.version>${child.model.version}</net.onebean.aluminium.service.version>
-        <net.onebean.aluminium.security.version>${child.model.version}</net.onebean.aluminium.security.version>
-        <net.onebean.aluminium.action.version>${child.model.version}</net.onebean.aluminium.action.version>
-        <net.onebean.aluminium.web.version>${child.model.version}</net.onebean.aluminium.web.version>
-        <net.onebean.core.version>${core.version}</net.onebean.core.version>
     </properties>
 
     <modules>
@@ -36,4 +29,31 @@
         <module>net.onebean.aluminium.web</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.onebean</groupId>
+                <artifactId>net.onebean.aluminium.action</artifactId>
+                <version>${child.model.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.onebean</groupId>
+                <artifactId>net.onebean.aluminium.security</artifactId>
+                <version>${child.model.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.onebean</groupId>
+                <artifactId>net.onebean.aluminium.service</artifactId>
+                <version>${child.model.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.onebean</groupId>
+                <artifactId>net.onebean.aluminium.dao</artifactId>
+                <version>${child.model.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

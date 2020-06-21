@@ -23,7 +23,6 @@
         <dependency>
             <groupId>net.onebean</groupId>
             <artifactId>net.onebean.aluminium.action</artifactId>
-            <version>${net.onebean.aluminium.action.version}</version>
         </dependency>
 
         <dependency>

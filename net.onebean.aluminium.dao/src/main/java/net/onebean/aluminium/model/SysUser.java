@@ -11,6 +11,16 @@ import java.util.List;
 @TableName("sys_user")
 public class SysUser extends BaseModel implements InterfaceBaseDeletedModel {
 
+	private Boolean hahaha;
+	@IgnoreColumn
+	public Boolean getHahaha() {
+		return true;
+	}
+
+	public void setHahaha(Boolean hahaha) {
+		this.hahaha = hahaha;
+	}
+
 	private String icon;
 	private String realName;
 	private String email;
