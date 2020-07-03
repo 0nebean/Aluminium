@@ -108,7 +108,6 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
      */
     @RequestMapping("save")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_PREMISSION_SAVE')")
     public BaseResponse<SysPermission> add(@RequestBody SysPermission entity) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -117,7 +116,7 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
             logger.debug("method add entity = " + JSON.toJSONString(entity, SerializerFeature.WriteMapNullValue));
             entity = loadOperatorData(entity);
             baseService.save(entity);
-            response = BaseResponse.ok(entity);
+            response = response.ok(entity);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -139,7 +138,6 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
      */
     @RequestMapping("list")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_PREMISSION_LIST')")
     public BasePaginationResponse<CodeDatabaseTable> list(@RequestBody BasePaginationRequest<String> request) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -151,7 +149,7 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
             Sort sort = Optional.ofNullable(request).map(BasePaginationRequest::getSort).orElse(new Sort(Sort.DESC, "id"));
             initData(sort, page, cond);
             dicCoverList(null, "date@createTime$");
-            response = BasePaginationResponse.ok(dataList, page);
+            response = response.ok(dataList, page);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -174,14 +172,13 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
     @RequestMapping(value = "delete/{id}")
     @Description(value = "删除")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_PREMISSION_DELETE')")
     public BaseResponse<Boolean> delete(@PathVariable("id") Object id) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BaseResponse<Boolean> response = new BaseResponse<>();
         try {
             logger.debug("method delete id = " + JSON.toJSONString(id, SerializerFeature.WriteMapNullValue));
-            response = BaseResponse.ok(baseService.delPerm(id));
+            response = response.ok(baseService.delPerm(id));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -199,7 +196,6 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
      */
     @RequestMapping("menutree")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_PREMISSION_MENU_TREE')")
     public BasePaginationResponse<MenuTree> MenuTree(@RequestBody BasePaginationRequest<InitTreeReq> request) {
         logger.info("method MenuTree access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -209,7 +205,7 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
             Long parentId = Optional.ofNullable(request).map(BasePaginationRequest::getData).map(InitTreeReq::getParentId).orElse(null);
             Long selfId = Optional.ofNullable(request).map(BasePaginationRequest::getData).map(InitTreeReq::getSelfId).orElse(null);
             SysUser currentUser = SpringSecurityUtil.getCurrentLoginUser();
-            response = BasePaginationResponse.ok(baseService.findChildAsync(parentId,selfId,currentUser));
+            response = response.ok(baseService.findChildAsync(parentId,selfId,currentUser));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -227,7 +223,6 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
      */
     @RequestMapping("allmenutree")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_PREMISSION_ALL_MENU_TREE')")
     public BasePaginationResponse<MenuTree> allMenuTree() {
         logger.info("method allmenutree access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -236,7 +231,7 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
             SysUser currentUser = SpringSecurityUtil.getCurrentLoginUser();
             List<SysPermission> list = baseService.findChildSync(currentUser);//查出url和menu的数据
             list = dicCoverTree("childList", list, "dic@CDLX$menuType");
-            response = BasePaginationResponse.ok(baseService.permissionToMenuTree(list, null));
+            response = response.ok(baseService.permissionToMenuTree(list, null));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -254,7 +249,6 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
      */
     @RequestMapping("allpermissiontree")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("isAuthenticated()")
     public BasePaginationResponse<SysPermission> allPermissionTree() {
         logger.info("method allPermissionTree access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -264,7 +258,7 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
             list = list.get(0).getChildList();
             list = dicCoverTree("childList", list, "dic@CDLX$menuType");
             list = baseService.getCurrentLoginUserHasPermission(list, SpringSecurityUtil.getCurrentPermissions());
-            response = BasePaginationResponse.ok(list);
+            response = response.ok(list);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -282,7 +276,6 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
      */
     @RequestMapping("getrolepremission")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_PREMISSION_GET_ROLE_PREM')")
     public BasePaginationResponse<MenuTree> getRolePremission(@RequestBody BasePaginationRequest<Long> request) {
         logger.info("method getRolePremission access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -291,7 +284,7 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
             SysUser currentUser = SpringSecurityUtil.getCurrentLoginUser();
             Long roleId = Optional.ofNullable(request).map(BasePaginationRequest::getData).orElse(0L);
             List<SysPermission> list = baseService.findChildSync(currentUser);//查出url和menu的数据
-            response = BasePaginationResponse.ok(baseService.permissionToMenuTreeForRole(list, null, roleId));
+            response = response.ok(baseService.permissionToMenuTreeForRole(list, null, roleId));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -309,7 +302,6 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
      */
     @RequestMapping("savepremissionrole")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_PREMISSION_SAVE_ROLE_PREM')")
     public BaseResponse<Boolean> savePremissionRole(@RequestBody BasePaginationRequest<PremissionRoleReq> req) {
         logger.info("method savePermissionRole access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -317,7 +309,7 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
         try {
             String premIds = Optional.ofNullable(req).map(BasePaginationRequest::getData).map(PremissionRoleReq::getPremIds).orElse("");
             String roleId = Optional.ofNullable(req).map(BasePaginationRequest::getData).map(PremissionRoleReq::getRoleId).orElse("");
-            response = BaseResponse.ok(baseService.savePermissionRole(premIds,roleId));
+            response = response.ok(baseService.savePermissionRole(premIds,roleId));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -335,14 +327,13 @@ public class SysPremissionController extends BaseController<SysPermission, SysPe
      */
     @RequestMapping("isPermissionRepeat")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_PREMISSION_IS_REPEAT')")
     public BaseResponse<Boolean> isPermissionRepeat(@RequestParam String reg,@RequestParam Long id) {
 
         logger.info("method urlRepeat access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BaseResponse<Boolean> response = new BaseResponse<>();
         try {
-            response = BaseResponse.ok(baseService.urlRepeat(reg,id));
+            response = response.ok(baseService.urlRepeat(reg,id));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());

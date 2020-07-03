@@ -62,7 +62,6 @@ public class CodeDatabaseTableController extends BaseController<CodeDatabaseTabl
      */
     @RequestMapping("list")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_CODE_DATABASE_MODEL_LIST')")
     public BasePaginationResponse<CodeDatabaseTable> list(@RequestBody BasePaginationRequest<String> request) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -74,7 +73,7 @@ public class CodeDatabaseTableController extends BaseController<CodeDatabaseTabl
             Sort sort = Optional.ofNullable(request).map(BasePaginationRequest::getSort).orElse(new Sort(Sort.DESC, "id"));
             initData(sort, page, cond);
             dicCoverList(null, "dic@SCDMFG$generateType", "dic@SCDMFW$generateScope", "date@createTime$");
-            response = BasePaginationResponse.ok(dataList, page);
+            response = response.ok(dataList, page);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -110,14 +109,13 @@ public class CodeDatabaseTableController extends BaseController<CodeDatabaseTabl
     @RequestMapping(value = "delete/{id}")
     @Description(value = "删除")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_CODE_DATABASE_MODEL_DELETE')")
-    public BaseResponse<CodeDatabaseTable> delete(@PathVariable("id") Object id) {
+    public BaseResponse<Boolean> delete(@PathVariable("id") Object id) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
-        BaseResponse<CodeDatabaseTable> response = new BaseResponse<>();
+        BaseResponse<Boolean> response = new BaseResponse<>();
         try {
             logger.debug("method delete id = " + JSON.toJSONString(id, SerializerFeature.WriteMapNullValue));
-            response = BaseResponse.ok(baseService.deleteCodeDatabaseTable(id));
+            response = response.ok(baseService.deleteCodeDatabaseTable(id));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -194,14 +192,13 @@ public class CodeDatabaseTableController extends BaseController<CodeDatabaseTabl
      */
     @RequestMapping("save")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_CODE_DATABASE_MODEL_SAVE')")
-    public BaseResponse<CodeDatabaseTable> add(@RequestBody CodeDatabaseTable entity) {
+    public BaseResponse<Boolean> add(@RequestBody CodeDatabaseTable entity) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
-        BaseResponse<CodeDatabaseTable> response = BaseResponse.ok(true);
+        BaseResponse<Boolean> response = new BaseResponse<>();
         try {
             logger.debug("method add entity = " + JSON.toJSONString(entity, SerializerFeature.WriteMapNullValue));
-            response = BaseResponse.ok(baseService.saveCodeDatabaseTable(entity));
+            response = response.ok(baseService.saveCodeDatabaseTable(entity));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -222,14 +219,13 @@ public class CodeDatabaseTableController extends BaseController<CodeDatabaseTabl
      */
     @RequestMapping("generate/{id}")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_CODE_DATABASE_MODEL_GENERATE')")
     public BaseResponse<String> generate(@PathVariable Object id) {
         logger.info("method generate access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BaseResponse<String> response = new BaseResponse<>();
         try {
             logger.debug("method list id = " + JSON.toJSONString(id, SerializerFeature.WriteMapNullValue));
-            response = BaseResponse.ok(baseService.generate(id));
+            response = response.ok(baseService.generate(id));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -250,7 +246,6 @@ public class CodeDatabaseTableController extends BaseController<CodeDatabaseTabl
      */
     @RequestMapping(value = "isRepeatTable")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_CODE_DATABASE_MODEL_IS_REPEAT')")
     public BaseResponse<Boolean> isRepeatTable(@RequestBody BasePaginationRequest<CodeDatabaseTable> request) {
         logger.info("method isRepeatTable access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -258,7 +253,7 @@ public class CodeDatabaseTableController extends BaseController<CodeDatabaseTabl
         try {
             logger.debug("method isRepeatTable request = " + JSON.toJSONString(request, SerializerFeature.WriteMapNullValue));
             String tableName = Optional.of(request).map(BasePaginationRequest::getData).map(CodeDatabaseTable::getTableName).orElse("");
-            response = BaseResponse.ok(baseService.isRepeatTable(tableName));
+            response = response.ok(baseService.isRepeatTable(tableName));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());

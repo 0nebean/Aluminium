@@ -102,7 +102,6 @@ public class DicDictionaryController extends BaseController<DicDictionary, DicDi
      */
     @RequestMapping("save")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_DIC_SAVE')")
     public BaseResponse<DicDictionary> add(@RequestBody DicDictionary entity) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -110,7 +109,7 @@ public class DicDictionaryController extends BaseController<DicDictionary, DicDi
         try {
             logger.debug("method add entity = " + JSON.toJSONString(entity, SerializerFeature.WriteMapNullValue));
             baseService.save(entity);
-            response = BaseResponse.ok(entity);
+            response = response.ok(entity);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -129,14 +128,13 @@ public class DicDictionaryController extends BaseController<DicDictionary, DicDi
     @RequestMapping(value = "delete/{id}")
     @Description(value = "删除")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_DIC_DELETE')")
     public BaseResponse<Integer> delete(@PathVariable("id")Object id) {
         logger.info("access"+ DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BaseResponse<Integer> response = new BaseResponse<>();
         try {
             logger.debug("method delete id = "+ JSON.toJSONString(id, SerializerFeature.WriteMapNullValue));
-            response = BaseResponse.ok(baseService.deleteById(id));
+            response = response.ok(baseService.deleteById(id));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -158,7 +156,6 @@ public class DicDictionaryController extends BaseController<DicDictionary, DicDi
      */
     @RequestMapping("list")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_DIC_LIST')")
     public BasePaginationResponse<DicDictionary> list(@RequestBody BasePaginationRequest<String> request) {
         logger.info("method list access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -169,7 +166,7 @@ public class DicDictionaryController extends BaseController<DicDictionary, DicDi
             Pagination page = Optional.ofNullable(request).map(BasePaginationRequest::getPage).orElse(new Pagination());
             Sort sort = Optional.ofNullable(request).map(BasePaginationRequest::getSort).orElse(new Sort(Sort.DESC, "id"));
             initData(sort, page, cond);
-            response = BasePaginationResponse.ok(dataList, page);
+            response = response.ok(dataList, page);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());

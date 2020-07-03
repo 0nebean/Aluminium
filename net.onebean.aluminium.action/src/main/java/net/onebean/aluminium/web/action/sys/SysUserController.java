@@ -111,7 +111,6 @@ public class SysUserController extends BaseController<SysUser, SysUserService> {
      */
     @RequestMapping("save")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_USER_SAVE')")
     public BaseResponse<SysUser> add(@RequestBody SysUser entity) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -124,7 +123,7 @@ public class SysUserController extends BaseController<SysUser, SysUserService> {
                 entity.setPassword(oneBeanPasswordEncoder.encode(entity.getPassword()));
             }
             baseService.save(entity);
-            response = BaseResponse.ok(entity);
+            response = response.ok(entity);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -158,7 +157,6 @@ public class SysUserController extends BaseController<SysUser, SysUserService> {
      */
     @RequestMapping(value = "list")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_USER_LIST')")
     public BasePaginationResponse<CodeDatabaseTable> list(@RequestBody BasePaginationRequest<String> request) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -172,7 +170,7 @@ public class SysUserController extends BaseController<SysUser, SysUserService> {
             String join = "LEFT JOIN sys_organization o ON o.`id` = t.org_id";
             initData(sort, page, cond, dataPermUtils.dataPermFilter(currentUser, "o", "t", join));
             dicCoverList(null, "dic@SF$isLock", "dic@YHLX$userType", "date@createTime$");
-            response = BasePaginationResponse.ok(dataList, page);
+            response = response.ok(dataList, page);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -195,14 +193,13 @@ public class SysUserController extends BaseController<SysUser, SysUserService> {
     @RequestMapping(value = "delete/{id}")
     @Description(value = "删除")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_USER_DELETE')")
     public BaseResponse<Boolean> delete(@PathVariable("id") Object id) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BaseResponse<Boolean> response = new BaseResponse<>();
         try {
             logger.debug("method delete id = " + JSON.toJSONString(id, SerializerFeature.WriteMapNullValue));
-            response = BaseResponse.ok(baseService.deleteUser(id));
+            response = response.ok(baseService.deleteUser(id));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -220,16 +217,15 @@ public class SysUserController extends BaseController<SysUser, SysUserService> {
      */
     @RequestMapping(value = "resetpassword/{id}")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_USER_RESET_PASSWORD')")
-    public BaseResponse<Boolean> resetpassword(@PathVariable("id") Object id) {
+    public BaseResponse<Integer> resetpassword(@PathVariable("id") Object id) {
         logger.info("method resetpassword access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
-        BaseResponse<Boolean> response = new BaseResponse<>();
+        BaseResponse<Integer> response = new BaseResponse<>();
         try {
             logger.debug("method resetpassword id = " + JSON.toJSONString(id, SerializerFeature.WriteMapNullValue));
             SysUser entity = baseService.findById(id);
             entity.setPassword(oneBeanPasswordEncoder.encode("123456"));
-            response = BaseResponse.ok(baseService.update(entity));
+            response = response.ok(baseService.update(entity));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -275,7 +271,6 @@ public class SysUserController extends BaseController<SysUser, SysUserService> {
      */
     @RequestMapping(value = "finduserbyorgid/{orgId}")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_USER_FIND_BY_ORGID')")
     public BasePaginationResponse<SysUser> findUserByOrgId(@PathVariable("orgId") String orgId) {
         logger.info("method findUserByOrgId access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -284,7 +279,7 @@ public class SysUserController extends BaseController<SysUser, SysUserService> {
             logger.debug("method findUserByOrgId orgId = " + JSON.toJSONString(orgId, SerializerFeature.WriteMapNullValue));
             Condition param = Condition.parseModelCondition("orgId@string@eq");
             param.setValue(orgId);
-            response = BasePaginationResponse.ok(baseService.find(null, param));
+            response = response.ok(baseService.find(null, param));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());

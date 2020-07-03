@@ -95,7 +95,6 @@ public class TestCodeController extends BaseController<TestCode,TestCodeService>
     */
     @RequestMapping("save")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_TESTGUA_SAVE')")
     public BaseResponse<TestCode> add(@RequestBody TestCode entity) {
     logger.info("method add access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -104,7 +103,7 @@ public class TestCodeController extends BaseController<TestCode,TestCodeService>
             logger.debug("method add entity = " + JSON.toJSONString(entity, SerializerFeature.WriteMapNullValue));
             entity = loadOperatorData(entity);
             baseService.save(entity);
-            response = BaseResponse.ok(entity);
+            response = response.ok(entity);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -153,7 +152,6 @@ public class TestCodeController extends BaseController<TestCode,TestCodeService>
     */
     @RequestMapping("list")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_TESTGUA_LIST')")
     public BasePaginationResponse<TestCode> list (@RequestBody BasePaginationRequest<String> request){
         logger.info("access"+ DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -164,7 +162,7 @@ public class TestCodeController extends BaseController<TestCode,TestCodeService>
             Pagination page = Optional.ofNullable(request).map(BasePaginationRequest::getPage).orElse(new Pagination());
             Sort sort = Optional.ofNullable(request).map(BasePaginationRequest::getSort).orElse(new Sort(Sort.DESC,"id"));
             initData(sort,page,cond);
-            response = BasePaginationResponse.ok(dataList,page);
+            response = response.ok(dataList,page);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());

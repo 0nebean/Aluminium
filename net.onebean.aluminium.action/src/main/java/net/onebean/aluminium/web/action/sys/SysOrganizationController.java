@@ -100,7 +100,6 @@ public class SysOrganizationController extends BaseController<SysOrganization, S
      */
     @RequestMapping("save")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ORG_SAVE')")
     public BaseResponse<SysOrganization> add(@RequestBody SysOrganization entity) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -109,7 +108,7 @@ public class SysOrganizationController extends BaseController<SysOrganization, S
             logger.debug("method add entity = " + JSON.toJSONString(entity, SerializerFeature.WriteMapNullValue));
             entity = loadOperatorData(entity);
             baseService.save(entity);
-            response = BaseResponse.ok(entity);
+            response = response.ok(entity);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -130,7 +129,6 @@ public class SysOrganizationController extends BaseController<SysOrganization, S
      */
     @RequestMapping("list")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ORG_LIST')")
     public BasePaginationResponse<SysOrganization> list(@RequestBody BasePaginationRequest<String> request) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -141,7 +139,7 @@ public class SysOrganizationController extends BaseController<SysOrganization, S
             Pagination page = Optional.ofNullable(request).map(BasePaginationRequest::getPage).orElse(new Pagination());
             Sort sort = Optional.ofNullable(request).map(BasePaginationRequest::getSort).orElse(new Sort(Sort.DESC, "id"));
             initData(sort, page, cond);
-            response = BasePaginationResponse.ok(dataList, page);
+            response = response.ok(dataList, page);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -163,14 +161,13 @@ public class SysOrganizationController extends BaseController<SysOrganization, S
     @RequestMapping(value = "delete/{id}")
     @Description(value = "删除")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ORG_DELETE')")
     public BaseResponse<Boolean> delete(@PathVariable("id") Object id) {
         logger.info("method delete access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BaseResponse<Boolean> response = new BaseResponse<>();
         try {
             logger.debug("method delete id = " + JSON.toJSONString(id, SerializerFeature.WriteMapNullValue));
-            response = BaseResponse.ok(baseService.deleteOrg(id));
+            response = response.ok(baseService.deleteOrg(id));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -191,7 +188,6 @@ public class SysOrganizationController extends BaseController<SysOrganization, S
     @RequestMapping("orgtree")
     @ResponseBody
     @PreAuthorize("hasPermission('$everyone','PERM_ORG_TREE')")
-    @SuppressWarnings("unchecked")
     public BasePaginationResponse<OrgTree> orgTree(@RequestBody BasePaginationRequest<InitTreeReq> request) {
         logger.info("method orgTree access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BasePaginationResponse<OrgTree> response = new BasePaginationResponse<>();
@@ -200,7 +196,7 @@ public class SysOrganizationController extends BaseController<SysOrganization, S
             SysUser currentUser = SpringSecurityUtil.getCurrentLoginUser();
             Long parentId = Optional.ofNullable(request).map(BasePaginationRequest::getData).map(InitTreeReq::getParentId).orElse(null);
             Long selfId = Optional.ofNullable(request).map(BasePaginationRequest::getData).map(InitTreeReq::getSelfId).orElse(null);
-            response = BasePaginationResponse.ok(baseService.findChildAsync(parentId,selfId,currentUser));
+            response = response.ok(baseService.findChildAsync(parentId,selfId,currentUser));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -219,14 +215,13 @@ public class SysOrganizationController extends BaseController<SysOrganization, S
      */
     @RequestMapping("allorgtree")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ORG_ALL_TREE')")
     public BasePaginationResponse<OrgTree> allorgTree() {
         logger.info("method orgTree access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BasePaginationResponse<OrgTree> response = new BasePaginationResponse<>();
         try {
             SysUser currentUser = SpringSecurityUtil.getCurrentLoginUser();
-            response = BasePaginationResponse.ok(baseService.organizationToOrgTree(baseService.findChildSync(currentUser), null));
+            response = response.ok(baseService.organizationToOrgTree(baseService.findChildSync(currentUser), null));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());

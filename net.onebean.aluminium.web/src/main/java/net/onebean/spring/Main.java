@@ -33,10 +33,11 @@ import org.springframework.stereotype.Service;
 				@ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION)
 		})
 @SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
+@EnableApolloConfig
 public class Main {
 
 	public static void main(String[] args) {
-		ApolloConfInitializer.initLocalConf();
+		ApolloConfInitializer.init();
 		SpringApplication.run(Main.class, args);
 	}
 

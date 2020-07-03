@@ -111,7 +111,6 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
      */
     @RequestMapping("save")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ROLE_SAVE')")
     public BaseResponse<SysRole> add(@RequestBody SysRole entity) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -120,7 +119,7 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
             logger.debug("method add entity = " + JSON.toJSONString(entity, SerializerFeature.WriteMapNullValue));
             entity = loadOperatorData(entity);
             baseService.save(entity);
-            response = BaseResponse.ok(entity);
+            response = response.ok(entity);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -143,14 +142,13 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
     @RequestMapping(value = "delete/{id}")
     @Description(value = "删除")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ROLE_DELETE')")
     public BaseResponse<Boolean> delete(@PathVariable("id") Object id) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BaseResponse<Boolean> response = new BaseResponse<>();
         try {
             logger.debug("method delete id = " + JSON.toJSONString(id, SerializerFeature.WriteMapNullValue));
-            response = BaseResponse.ok(baseService.deleteRole(id));
+            response = response.ok(baseService.deleteRole(id));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -171,7 +169,6 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
      */
     @RequestMapping("list")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ROLE_LIST')")
     public BasePaginationResponse<SysRole> list(@RequestBody BasePaginationRequest<String> request) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -185,7 +182,7 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
             String join = "LEFT JOIN sys_user u on u.id = t.operator_id LEFT JOIN sys_organization o ON o.`id` = u.org_id";
             initData(sort, page, cond, dataPermUtils.dataPermFilter(currentUser, "o", "t", join));
             dicCoverList(null, "dic@SF$isLock", "dic@SJQX$dataPermissionLevel", "date@createTime$");
-            response = BasePaginationResponse.ok(dataList, page);
+            response = response.ok(dataList, page);
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -203,14 +200,13 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
      */
     @RequestMapping("findbyuid/{userId}")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ROLE_FIND_BY_USERID')")
     public BasePaginationResponse<SysRole> findRolesByUserId(@PathVariable("userId") Long userId) {
         logger.info("method findRolesByUserId access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BasePaginationResponse<SysRole> response = new BasePaginationResponse<>();
         try {
             logger.debug("method findRolesByUserId userId = " + JSON.toJSONString(userId, SerializerFeature.WriteMapNullValue));
-            response = BasePaginationResponse.ok(baseService.findRolesByUserId(userId));
+            response = response.ok(baseService.findRolesByUserId(userId));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -228,14 +224,13 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
      */
     @RequestMapping("findByRoleName/{roleName}")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ROLE_FIND_BY_NAME')")
     public BasePaginationResponse<SysRole> findByRoleName(@PathVariable("roleName") String roleName) {
         logger.info("method findByRoleName access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
         BasePaginationResponse<SysRole> response = new BasePaginationResponse<>();
         try {
             logger.debug("method findByRoleName name = " + JSON.toJSONString(roleName, SerializerFeature.WriteMapNullValue));
-            response = BasePaginationResponse.ok(baseService.findByName(roleName));
+            response = response.ok(baseService.findByName(roleName));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -253,7 +248,6 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
      */
     @RequestMapping("addroleuser")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ROLE_ADD_ROLE_USER')")
     public BaseResponse<Boolean> addRoleUser(@RequestBody BasePaginationRequest<AddRoleUserReq> request) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -262,7 +256,7 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
             logger.debug("method addRoleUser request = " + JSON.toJSONString(request, SerializerFeature.WriteMapNullValue));
             Long userId = Optional.ofNullable(request).map(BasePaginationRequest::getData).map(AddRoleUserReq::getUserId).orElse(0L);
             String roleIds = Optional.ofNullable(request).map(BasePaginationRequest::getData).map(AddRoleUserReq::getRoleIds).orElse("");
-            response = BaseResponse.ok(baseService.addRoleUser(userId,roleIds));
+            response = response.ok(baseService.addRoleUser(userId,roleIds));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -280,15 +274,14 @@ public class SysRoleController extends BaseController<SysRole, SysRoleService> {
      */
     @RequestMapping("removeroleuser")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','PERM_ROLE_REMOVE_ROLE_USER')")
-    public BaseResponse<SysRole> removeRoleUser(@RequestBody BasePaginationRequest<String> request) {
+    public BaseResponse<Boolean> removeRoleUser(@RequestBody BasePaginationRequest<String> request) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
-        BaseResponse<SysRole> response = new BaseResponse<>();
+        BaseResponse<Boolean> response = new BaseResponse<>();
         try {
             logger.debug("method removeRoleUser request = " + JSON.toJSONString(request, SerializerFeature.WriteMapNullValue));
             String urIds = Optional.ofNullable(request).map(BasePaginationRequest::getData).orElse("");
-            response = BaseResponse.ok(baseService.removeRoleUser(urIds));
+            response = response.ok(baseService.removeRoleUser(urIds));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
