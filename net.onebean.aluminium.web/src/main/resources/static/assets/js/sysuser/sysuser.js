@@ -8,7 +8,7 @@ function initModalRU() {
             url:$link,
             wildcard: '%QUERY'
             ,filter: function(result) {
-                return $.map(result.datas, function(item) {
+                return $.map(result.data, function(item) {
                     return {
                         chName:item.chName,
                         name:item.name,
@@ -44,7 +44,7 @@ function initRoleUserList() {
     var userId = $('#rolesList').data("uid");
     var $url ="/sysrole/findbyuid/"+userId;
     doPost($url,{},function(res){
-        $('#rolesList').html(template('tpl-sysRoleList',res.datas));
+        $('#rolesList').html(template('tpl-sysRoleList',res.data));
     })
 }
 

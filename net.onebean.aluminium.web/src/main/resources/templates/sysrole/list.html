@@ -149,7 +149,7 @@
             data: formatQueryFromParam()
         };
         doPost("/sysrole/list", param, function (res) {
-            $('#dataTable').html(template('tpl-sysrole', res.datas));
+            $('#dataTable').html(template('tpl-sysrole', res.data));
             $('#pagination').html(template('tpl-pagination', res.page));
         })
     }

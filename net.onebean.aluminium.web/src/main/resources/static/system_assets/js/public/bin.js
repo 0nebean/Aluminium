@@ -357,7 +357,7 @@ function initTreeAsyncSingleSelect(title, selfId, url) {
                     callback({data: options.childList});
                 } else {
                     doPost(url,{data:{parentId: options.id, selfId: selfId}}, function (res) {
-                        callback({data: res.datas});
+                        callback({data: res.data});
                     })
                 }
 
@@ -387,7 +387,7 @@ function initTreeSyncMultiSelect(title, roleId, url, $treeTemplate) {
                     callback({data: options.childList});
                 } else {
                     doPost(url, {data: roleId}, function (res) {
-                        callback({data: res.datas});
+                        callback({data: res.data});
                         $treeTemplate.tree('selectItemSafe', $('.selected-item'));
                     })
                 }

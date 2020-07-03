@@ -23,7 +23,7 @@
     <script type="text/javascript">
         $(function(){
             doPost("/syspremission/allpermissiontree",{},function (res) {
-                $('#sysMenu').html(template('sys-menu-templ', res.datas));
+                $('#sysMenu').html(template('sys-menu-templ', res.data));
                 activeMenuOnLoad();
             })
         })

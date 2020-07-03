@@ -90,7 +90,7 @@
 
     function initDataTable() {
         doPost("/syspremission/allmenutree", {}, function (res) {
-            $('#dataTable').html(template('tpl-syspremission', res.datas));
+            $('#dataTable').html(template('tpl-syspremission', res.data));
         })
     }
 </script>

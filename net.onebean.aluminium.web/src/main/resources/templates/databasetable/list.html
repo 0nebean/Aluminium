@@ -150,7 +150,7 @@
             data: formatQueryFromParam()
         };
         doPost("/databasetable/list", param, function (res) {
-            $('#dataTable').html(template('tpl-databasetable', res.datas));
+            $('#dataTable').html(template('tpl-databasetable', res.data));
             $('#pagination').html(template('tpl-pagination', res.page))
         })
     }

@@ -159,7 +159,7 @@
             data: formatQueryFromParam()
         };
         doPost("/dic/list", param, function (res) {
-            $('#dataTable').html(template('tpl-dic', res.datas));
+            $('#dataTable').html(template('tpl-dic', res.data));
             $('#pagination').html(template('tpl-pagination', res.page));
         })
 

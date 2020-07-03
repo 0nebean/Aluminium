@@ -143,8 +143,8 @@
         var currentLoginUserId = [[${current_sys_user.id}]];
 
         doPost("/sysuser/list",param,function (res) {
-            res.datas.currentLoginUserId = currentLoginUserId;
-            $('#dataTable').html(template('tpl-sysuser', res.datas));
+            res.data.currentLoginUserId = currentLoginUserId;
+            $('#dataTable').html(template('tpl-sysuser', res.data));
             $('#pagination').html(template('tpl-pagination', res.page));
         })
     }

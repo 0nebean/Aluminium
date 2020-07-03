@@ -85,7 +85,7 @@
 
     function initDataTable() {
         doPost("/sysorg/allorgtree", {}, function (res) {
-            $('#dataTable').html(template('tpl-sysorg', res.datas));
+            $('#dataTable').html(template('tpl-sysorg', res.data));
         })
     }
 </script>

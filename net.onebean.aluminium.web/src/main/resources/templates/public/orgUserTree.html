@@ -73,7 +73,7 @@
         var orgId = $(this).tree('selectedItems')[0].id;
         url = url+orgId;
         doPost(url,{},function(res){
-            $('#linkageDataSelector').html(template('userOptinTempl', res.datas));
+            $('#linkageDataSelector').html(template('userOptinTempl', res.data));
         })
     });
 

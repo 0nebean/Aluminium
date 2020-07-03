@@ -117,7 +117,7 @@
         var sort = $("#orderBySelector").val().split('-')[1];
         var param = {sort: {orderBy: orderBy, sort: sort}, page: {currentPage: currentPage,pageSize: pageSize}, data: formatQueryFromParam()};
         doPost("/testcode/list",param,function (res) {
-            $('#dataTable').html(template('tpl-testcode', res.datas));
+            $('#dataTable').html(template('tpl-testcode', res.data));
             $('#pagination').html(template('tpl-pagination', res.page))
         })
     }

@@ -12,7 +12,7 @@ function generatedCode(id) {
     var url = "/databasetable/generate/";
     url = url + id;
     var completeHandler = function (resp) {
-        alert(resp.datas);
+        alert(resp.data);
     };
     doPost(url,{},completeHandler)
 }
