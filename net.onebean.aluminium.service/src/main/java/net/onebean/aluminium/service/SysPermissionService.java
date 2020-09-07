@@ -39,7 +39,7 @@ public interface SysPermissionService extends IBaseBiz<SysPermission> {
 	 * @param currentUser 当前登录用户
 	 * @return List<MenuTree>
 	 */
-	List<MenuTree> findChildAsync(Long parentId,Long selfId,SysUser currentUser);
+	List<MenuTree> findChildAsync(Long parentId, Long selfId, SysUser currentUser);
 	/**
 	 * 包装方法,将机构包装成treeList
 	 * @param before 加工前的 List<SysPermission>

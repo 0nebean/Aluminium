@@ -4,7 +4,6 @@ import net.onebean.aluminium.model.CodeDatabaseTable;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CodeDatabaseTableDao extends BaseDao<CodeDatabaseTable> {
     /**

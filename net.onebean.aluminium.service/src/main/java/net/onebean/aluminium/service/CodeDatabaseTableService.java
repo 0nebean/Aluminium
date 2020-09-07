@@ -4,7 +4,6 @@ import net.onebean.core.base.IBaseBiz;
 import net.onebean.aluminium.model.CodeDatabaseTable;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CodeDatabaseTableService extends IBaseBiz<CodeDatabaseTable> {
     /**

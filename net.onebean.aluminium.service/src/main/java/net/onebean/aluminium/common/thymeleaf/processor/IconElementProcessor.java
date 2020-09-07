@@ -1,6 +1,6 @@
 package net.onebean.aluminium.common.thymeleaf.processor;
 
-import net.onebean.aluminium.common.thymeleaf.base.OneBeanBaseAbstractElementTagProcessor;
+import net.onebean.aluminium.common.thymeleaf.base.BaseAbstractElementTagProcessor;
 import net.onebean.util.StringUtils;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.context.ITemplateContext;
@@ -9,11 +9,11 @@ import org.thymeleaf.processor.element.IElementTagStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
 /**
- * @author 0neBean
+ * @author Heisenberg
  * 自定义thymeleaf标签 图标选择器 功能实现
  */
 @Component
-public class IconElementProcessor extends OneBeanBaseAbstractElementTagProcessor {
+public class IconElementProcessor extends BaseAbstractElementTagProcessor {
 
     private static final String PREFIX = "picker";
     private static final String TAG_NAME = "icon";
@@ -50,7 +50,7 @@ public class IconElementProcessor extends OneBeanBaseAbstractElementTagProcessor
         inputStart = modelFactory.setAttribute(inputStart,"name",name);
         inputStart = modelFactory.setAttribute(inputStart,"id",id);
         inputStart = modelFactory.setAttribute(inputStart,"type","text");
-        inputStart = modelFactory.setAttribute(inputStart,"class","oneBean-icon-picker");
+        inputStart = modelFactory.setAttribute(inputStart,"class","heisenberg-icon-picker");
         if (StringUtils.isNotEmpty(disabled) && disabled.equals("disabled")) {
             inputStart = modelFactory.setAttribute(inputStart,"disabled",disabled);
         }

@@ -198,7 +198,7 @@ Fixed Issues:
 **Important Notes:**
 
 * [#13793](https://dev.ckeditor.com/ticket/13793): The [`embed_provider`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-embed_provider) configuration option for the [Media Embed](https://ckeditor.com/cke4/addon/embed) and [Semantic Media Embed](https://ckeditor.com/cke4/addon/embedsemantic) plugins is no longer preset by default.
-* The [UI Color](https://ckeditor.com/cke4/addon/uicolor) plugin now uses a custom color picker instead of the `YUI 2.7.0` library which has some known vulnerabilities (it's a security precaution, there was no security issue in CKEditor due to the way it was used).
+* The [UI Color](https://ckeditor.com/cke4/addon/uicolor) plugin now uses a custom color picker instead of the `YUI 2.7.0` library which has some known vulnerabilities (it's a net.onebean.aluminium.security precaution, there was no net.onebean.aluminium.security issue in CKEditor due to the way it was used).
 
 New Features:
 
@@ -246,7 +246,7 @@ Fixed Issues:
 * [#16920](https://dev.ckeditor.com/ticket/16920): Fixed: Several plugins not using the [Dialog](https://ckeditor.com/cke4/addon/dialog) plugin as a direct dependency.
 * [PR#336](https://github.com/ckeditor/ckeditor-dev/pull/336): Fixed: Typo in [`CKEDITOR.getCss`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR-method-getCss) API documentation. Thanks to [knusperpixel](https://github.com/knusperpixel)!
 * [#17027](https://dev.ckeditor.com/ticket/17027): Fixed: Command event data should be initialized as an empty object.
-* Fixed the behavior of HTML parser when parsing `src`/`srcdoc` attributes of the `<iframe>` element in a CKEditor setup with ACF turned off and without the [Iframe Dialog](https://ckeditor.com/cke4/addon/iframe) plugin. The issue was originally reported as a security issue by [Sriramk21](https://twitter.com/sriramk21) from Pegasystems and was later downgraded by the security team into a normal issue due to the requirement of having ACF turned off. Disabling [Advanced Content Filter](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_advanced_content_filter) is against [security best practices](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_best_practices-section-security), so the problem described above has not been considered a security issue as such.
+* Fixed the behavior of HTML parser when parsing `src`/`srcdoc` attributes of the `<iframe>` element in a CKEditor setup with ACF turned off and without the [Iframe Dialog](https://ckeditor.com/cke4/addon/iframe) plugin. The issue was originally reported as a net.onebean.aluminium.security issue by [Sriramk21](https://twitter.com/sriramk21) from Pegasystems and was later downgraded by the net.onebean.aluminium.security team into a normal issue due to the requirement of having ACF turned off. Disabling [Advanced Content Filter](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_advanced_content_filter) is against [net.onebean.aluminium.security best practices](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_best_practices-section-security), so the problem described above has not been considered a net.onebean.aluminium.security issue as such.
 
 Other Changes:
 
@@ -763,7 +763,7 @@ Fixed Issues:
 * [#12825](https://dev.ckeditor.com/ticket/12825): Fixed: Preventing the [Table Resize](https://ckeditor.com/cke4/addon/tableresize) plugin from operating on elements outside the editor. Thanks to [Paul Martin](https://github.com/Paul-Martin)!
 * [#12157](https://dev.ckeditor.com/ticket/12157): Fixed: Lost text formatting on pressing *Tab* when the [`config.tabSpaces`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-tabSpaces) configuration option value was greater than zero.
 * [#12777](https://dev.ckeditor.com/ticket/12777): Fixed: The `table-layout` CSS property should be reset by skins. Thanks to [vita10gy](https://github.com/vita10gy)!
-* [#12812](https://dev.ckeditor.com/ticket/12812): Fixed: An uncaught security exception is thrown when [Line Utilities](https://ckeditor.com/cke4/addon/lineutils) are used in an inline editor loaded in a cross-domain `iframe`. Thanks to [Vitaliy Zurian](https://github.com/thecatontheflat)!
+* [#12812](https://dev.ckeditor.com/ticket/12812): Fixed: An uncaught net.onebean.aluminium.security exception is thrown when [Line Utilities](https://ckeditor.com/cke4/addon/lineutils) are used in an inline editor loaded in a cross-domain `iframe`. Thanks to [Vitaliy Zurian](https://github.com/thecatontheflat)!
 * [#12735](https://dev.ckeditor.com/ticket/12735): Fixed: [`config.fillEmptyBlocks`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-fillEmptyBlocks) should only apply when outputting data.
 * [#10032](https://dev.ckeditor.com/ticket/10032): Fixed: [Paste from Word](https://ckeditor.com/cke4/addon/pastefromword) filter is executed for every paste after using the button.
 * [#12597](https://dev.ckeditor.com/ticket/12597): [Blink/WebKit] Fixed: Multi-byte Japanese characters entry not working properly after *Shift+Enter*.

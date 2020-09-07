@@ -22,7 +22,7 @@
 
         <dependency>
             <groupId>net.onebean</groupId>
-            <artifactId>net.onebean.data.aliyun.oss</artifactId>
+            <artifactId>net.onebean.data.redis</artifactId>
         </dependency>
 
     </dependencies>

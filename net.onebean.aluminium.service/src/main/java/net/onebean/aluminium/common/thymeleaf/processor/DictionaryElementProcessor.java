@@ -14,7 +14,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import java.util.List;
 
 /**
- * @author 0neBean
+ * @author Heisenberg
  * 自定义thymeleaf标签 字典code转义 功能实现
  */
 @Component
@@ -135,13 +135,13 @@ public class DictionaryElementProcessor extends AbstractElementTagProcessor {
 
 
         if(StringUtils.isNotEmpty(inChildList)){
-            classStr.append(" onebean-child-list-item");
+            classStr.append(" heisenberg-child-list-item");
         }
         if (StringUtils.isNotEmpty(disabled)) {
             selectStart = modelFactory.setAttribute(selectStart,"disabled",disabled);
         }
         if (StringUtils.isNotEmpty(pattern)) {
-            classStr.append(" paramInput onebean-param-select-box");
+            classStr.append(" paramInput heisenberg-param-select-box");
             selectStart = modelFactory.setAttribute(selectStart,"param-pattern",pattern);
         }
         if (StringUtils.isNotEmpty(multiple)){

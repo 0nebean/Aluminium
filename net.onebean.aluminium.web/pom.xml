@@ -19,10 +19,19 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>net.onebean</groupId>
-            <artifactId>net.onebean.aluminium.action</artifactId>
+            <artifactId>net.onebean.aluminium.service</artifactId>
         </dependency>
 
         <dependency>
@@ -111,7 +120,7 @@
                     <archive>
                         <manifest>
                             <!-- 项目启动类 -->
-                            <mainClass>net.onebean.spring.Main</mainClass>
+                            <mainClass>net.onebean.spring.Web</mainClass>
                             <!-- 依赖的jar的目录前缀 -->
                             <useUniqueVersions>false</useUniqueVersions>
                             <classpathPrefix>../lib</classpathPrefix>
@@ -134,6 +143,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <fork>true</fork>
                     <layout>ZIP</layout>
                     <includes>
                         <!-- 项目启动jar包中排除依赖包 -->

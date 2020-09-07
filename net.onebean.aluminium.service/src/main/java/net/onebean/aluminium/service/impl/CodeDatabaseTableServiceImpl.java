@@ -67,7 +67,6 @@ public class CodeDatabaseTableServiceImpl extends BaseBiz<CodeDatabaseTable, Cod
         CodeDatabaseTable entity = this.findById(id);
         Condition param = Condition.parseModelCondition("tableId@int@eq$");
         param.setValue(id);
-        codeDatabaseFieldService.find(null, param);
         entity.setChildList(codeDatabaseFieldService.find(null, param));
         try {
             codeGenerateUtils.generate(entity);

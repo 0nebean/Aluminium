@@ -13,6 +13,7 @@ public class CodeDatabaseField extends BaseModel {
 	private Long tableId;
 	private String columnName;
 	private String databaseType;
+	private String jdbcType;
 	private String annotation;
 	private Integer sort;
 	private String pageType;
@@ -23,6 +24,24 @@ public class CodeDatabaseField extends BaseModel {
 	private String queryOperator;
 	private String isDicQueryParam;
 	private String[] validateArr;
+	private String databaseColumnName;
+
+	@FiledName("jdbcType")
+	public String getJdbcType() {
+		return jdbcType;
+	}
+	public void setJdbcType(String jdbcType) {
+		this.jdbcType = jdbcType;
+	}
+
+	@IgnoreColumn
+	public String getDatabaseColumnName() {
+		return databaseColumnName;
+	}
+
+	public void setDatabaseColumnName(String databaseColumnName) {
+		this.databaseColumnName = databaseColumnName;
+	}
 
 	@FiledName("tableId")
 	public Long getTableId() {

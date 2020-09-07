@@ -1,9 +1,9 @@
 package net.onebean.aluminium.service.impl;
+import net.onebean.aluminium.dao.SysPermissionRoleDao;
+import net.onebean.aluminium.service.SysPermissionRoleService;
 import org.springframework.stereotype.Service;
 import net.onebean.core.base.BaseBiz;
 import net.onebean.aluminium.model.SysPermissionRole;
-import net.onebean.aluminium.service.SysPermissionRoleService;
-import net.onebean.aluminium.dao.SysPermissionRoleDao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class SysPermissionRoleServiceImpl extends BaseBiz<SysPermissionRole, SysPermissionRoleDao> implements SysPermissionRoleService{
+public class SysPermissionRoleServiceImpl extends BaseBiz<SysPermissionRole, SysPermissionRoleDao> implements SysPermissionRoleService {
     @Override
     public List<SysPermissionRole> getRolePremissionByRoleId(Long roleId) {
         return baseDao.getRolePremissionByRoleId(roleId);

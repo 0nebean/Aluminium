@@ -1,17 +1,16 @@
 package net.onebean.aluminium;
 
-import net.onebean.core.extend.ApolloConfInitializer;
-import net.onebean.tool.CreateMongoJavaTool;
+import net.onebean.tool.PasswordGetter;
 
 public class CodeTool {
 
     public static void main(String[] args) {
-        ApolloConfInitializer.init();
+//        ApolloConfInitializer.init();
         /*生成mysql orm java代码*/
 //        CreateJavaTool.runIt();
 //        /*生成mongodb orm java代码*/
-        CreateMongoJavaTool.runIt();
+//        CreateMongoJavaTool.runIt();
 //        /*密码生成器*/
-//        PasswordGetter.runIt();
+        PasswordGetter.runIt();
     }
 }

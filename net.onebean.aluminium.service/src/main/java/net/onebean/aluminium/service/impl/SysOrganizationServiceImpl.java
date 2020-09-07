@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SysOrganizationServiceImpl extends BaseBiz<SysOrganization, SysOrganizationDao> implements SysOrganizationService{
+public class SysOrganizationServiceImpl extends BaseBiz<SysOrganization, SysOrganizationDao> implements SysOrganizationService {
 
     @Autowired
     private SysUserService sysUserService;
@@ -29,7 +29,7 @@ public class SysOrganizationServiceImpl extends BaseBiz<SysOrganization, SysOrga
 
     /**
      * 查找所有子节点
-     * @author 0neBean
+     * @author Heisenberg
      * @return list
      */
     public List<SysOrganization> findChildSync(SysUser currentUser) {
@@ -83,7 +83,7 @@ public class SysOrganizationServiceImpl extends BaseBiz<SysOrganization, SysOrga
 
     /**
      * 异步查找子节点,每次查找一级
-     * @author 0neBean
+     * @author Heisenberg
      * @param parentId
      * @return
      */
@@ -178,11 +178,11 @@ public class SysOrganizationServiceImpl extends BaseBiz<SysOrganization, SysOrga
     public Boolean deleteSelfAndChildById(Long id) {
         List<String> ids = baseDao.findDeleteId(id);
         if (CollectionUtil.isEmpty(ids)){
-            throw new BusinessException(ErrorCodesEnum.GET_DATE_ERR.code(),ErrorCodesEnum.GET_DATE_ERR.msg());
+            throw new BusinessException(ErrorCodesEnum.NONE_QUERY_DATA.code(),ErrorCodesEnum.NONE_QUERY_DATA.msg());
         }
         Integer count = sysUserService.countUserByIds(ids);
         if (null == count){
-            throw new BusinessException(ErrorCodesEnum.GET_DATE_ERR.code(),ErrorCodesEnum.GET_DATE_ERR.msg());
+            throw new BusinessException(ErrorCodesEnum.NONE_QUERY_DATA.code(),ErrorCodesEnum.NONE_QUERY_DATA.msg());
         }
         if (count > 0){
             return false;

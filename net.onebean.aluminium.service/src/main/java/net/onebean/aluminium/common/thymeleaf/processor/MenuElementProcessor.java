@@ -1,11 +1,10 @@
 package net.onebean.aluminium.common.thymeleaf.processor;
 
 import net.onebean.component.SpringUtil;
-import net.onebean.aluminium.common.thymeleaf.base.OneBeanBaseAbstractElementTagProcessor;
+import net.onebean.aluminium.common.thymeleaf.base.BaseAbstractElementTagProcessor;
 import net.onebean.aluminium.service.SysPermissionService;
 import net.onebean.aluminium.service.impl.SysPermissionServiceImpl;
 import net.onebean.util.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.*;
@@ -13,11 +12,11 @@ import org.thymeleaf.processor.element.IElementTagStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
 /**
- * @author 0neBean
+ * @author Heisenberg
  * 自定义标签 转义org树的选择结果
  */
 @Component
-public class MenuElementProcessor extends OneBeanBaseAbstractElementTagProcessor {
+public class MenuElementProcessor extends BaseAbstractElementTagProcessor {
 
 
 

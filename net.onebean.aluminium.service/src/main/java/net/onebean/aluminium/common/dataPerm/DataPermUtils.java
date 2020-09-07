@@ -9,7 +9,6 @@ import net.onebean.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +17,7 @@ import java.util.Map;
 /**
  * 数据权限 工具类 用于生成数据权限sql
  * 该类设计参考了 jeeplus 框架数据权限 感谢jeeplus作者
- * @author 0neBean
+ * @author Heisenberg
  */
 @Service
 public class DataPermUtils {
@@ -43,7 +42,7 @@ public class DataPermUtils {
      * @param userAlias 自定义sql中 用户表的别名 可以有多个别名 用','分割
      * @return 返回的结果中 hasDatePerm 标识sql是否为空,sql字段为数据权限拼接的sql join是join语句
      */
-    public Map<String,Object> dataPermFilter(SysUser user, String orgAlias, String userAlias,String join){
+    public Map<String,Object> dataPermFilter(SysUser user, String orgAlias, String userAlias, String join){
         Map<String,Object> dp = dataPermFilter(user,orgAlias,userAlias);
         dp.put("join", join);
         return dp;

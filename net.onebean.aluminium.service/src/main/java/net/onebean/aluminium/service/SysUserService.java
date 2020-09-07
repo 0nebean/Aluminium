@@ -30,4 +30,11 @@ public interface SysUserService extends IBaseBiz<SysUser> {
      * @return bool
      */
     Boolean deleteUser(Object id);
+    /**
+     * 重设用户密码
+     * @param currentUser 登录用户
+     * @param password 密码
+     * @return bool
+     */
+    Boolean resetPassword(SysUser currentUser, String password);
 }

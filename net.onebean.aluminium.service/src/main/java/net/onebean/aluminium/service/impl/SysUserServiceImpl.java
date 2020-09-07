@@ -41,4 +41,11 @@ public class SysUserServiceImpl extends BaseBiz<SysUser, SysUserDao> implements 
 		sysRoleUserService.deleteByUserId(Parse.toLong(id));
 		return true;
 	}
+
+	@Override
+	public Boolean resetPassword(SysUser currentUser, String password) {
+		currentUser.setPassword(password);
+		this.update(currentUser);
+		return true;
+	}
 }

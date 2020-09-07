@@ -9,7 +9,7 @@
 # logs/back目录: 项目运行日志备份目录
 # nohup后台运行
 #
-# author: 0neBean
+# author: Heisenberg
 # date: 2018-12-2
 #======================================================================
 
@@ -130,9 +130,10 @@ PID=$(ps -ef | grep "${APPLICATION_JAR}" | grep -v grep | awk '{ print $2 }')
 STARTUP_LOG="${STARTUP_LOG}application pid: ${PID}\n"
 
 # 启动日志追加到启动日志文件中
-echo -e ${STARTUP_LOG} >> ${LOG_STARTUP_PATH}
+#echo -e ${STARTUP_LOG} >> ${LOG_STARTUP_PATH}
 # 打印启动日志
-echo -e ${STARTUP_LOG}
+#echo -e ${STARTUP_LOG}
 
 # 打印项目日志
-tail -f ${LOG_PATH}
+#tail -f ${LOG_PATH}
+echo 'started admin!'

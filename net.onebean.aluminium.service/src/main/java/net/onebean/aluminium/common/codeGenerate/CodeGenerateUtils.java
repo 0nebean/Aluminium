@@ -18,10 +18,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 生成代码 工具类
- * @author 0neBean
+ * @author Heisenberg
  */
 @Service
 public class CodeGenerateUtils {
@@ -58,9 +59,8 @@ public class CodeGenerateUtils {
     /**
      * 生成代码方法入口
      * @param table 数据库模型
-     * @throws Exception 抛出所有异常前端通知用户
      */
-    public void generate(CodeDatabaseTable table) throws Exception{
+    public void generate(CodeDatabaseTable table){
         init(table);
         String generateType = Optional.ofNullable(table).map(CodeDatabaseTable::getGenerateType).orElse("");
         if (generateType.equals(CodeDatabaseTableEnum.GENREATER_TYPE_CRUD.getValue())){
@@ -130,10 +130,19 @@ public class CodeGenerateUtils {
         dataMap.put("model_package_name",modelPackageName);
         dataMap.put("dao_package_name",daoPackageName);
         dataMap.put("model_name",table.getTableNameGenerate());
+
+        dataMap.put("field_arr",loadDatabaseColumnName(table.getChildList()));
         dataMap.put("author",table.getAuthor());
         dataMap.put("description",table.getDescription());
         dataMap.put("create_time",table.getCreateTimeStr());
         generateFileByTemplate(templateName,mapperFile,dataMap);
+    }
+
+    private List<CodeDatabaseField> loadDatabaseColumnName(List<CodeDatabaseField> list){
+        return list.stream().peek(o -> {
+            String columnName = Optional.ofNullable(o).map(CodeDatabaseField::getColumnName).map(StringUtils::humpToUnderline).orElse("");
+            o.setDatabaseColumnName(columnName);
+        }).collect(Collectors.toList());
     }
 
 

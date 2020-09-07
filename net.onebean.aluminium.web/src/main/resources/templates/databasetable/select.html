@@ -78,7 +78,7 @@
                 var param = $('#DataFrom').serializeJson();
                 var url = "/databasetable/isRepeatTable/";
                 var completeHandler = function (resp) {
-                    if(resp.datas){
+                    if(resp.data){
                         routingPage("/databasetable/add/"+param.tableName,'添加数据库模型');
                     }else{
                         alert('该数据模型已存在');

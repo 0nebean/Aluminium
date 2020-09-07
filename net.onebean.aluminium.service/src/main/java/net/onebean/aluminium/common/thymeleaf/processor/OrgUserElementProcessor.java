@@ -1,7 +1,7 @@
 package net.onebean.aluminium.common.thymeleaf.processor;
 
 import net.onebean.component.SpringUtil;
-import net.onebean.aluminium.common.thymeleaf.base.OneBeanBaseAbstractElementTagProcessor;
+import net.onebean.aluminium.common.thymeleaf.base.BaseAbstractElementTagProcessor;
 import net.onebean.aluminium.model.SysUser;
 import net.onebean.aluminium.service.SysUserService;
 import net.onebean.aluminium.service.impl.SysUserServiceImpl;
@@ -9,16 +9,15 @@ import net.onebean.util.StringUtils;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.*;
-import org.thymeleaf.processor.element.AbstractElementTagProcessor;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
 /**
- * @author 0neBean
+ * @author Heisenberg
  * 自定义标签 转义org树的选择结果
  */
 @Component
-public class OrgUserElementProcessor extends OneBeanBaseAbstractElementTagProcessor {
+public class OrgUserElementProcessor extends BaseAbstractElementTagProcessor {
 
 
     private static final String PREFIX = "tree";

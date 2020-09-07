@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CodeDatabaseFieldServiceImpl extends BaseBiz<CodeDatabaseField, CodeDatabaseFieldDao> implements CodeDatabaseFieldService{
+public class CodeDatabaseFieldServiceImpl extends BaseBiz<CodeDatabaseField, CodeDatabaseFieldDao> implements CodeDatabaseFieldService {
 
     @Override
     public List<CodeDatabaseField> findAllTableFieldbyTableName(String tablename) {
@@ -62,6 +62,7 @@ public class CodeDatabaseFieldServiceImpl extends BaseBiz<CodeDatabaseField, Cod
             temp.setDatabaseType(classes);
             temp.setColumnName(field);
             temp.setMethodName(method_name);
+            temp.setJdbcType(StringUtils.getJdbcType(type));
             res.add(temp);
         }
 

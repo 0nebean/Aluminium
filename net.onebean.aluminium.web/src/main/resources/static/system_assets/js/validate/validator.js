@@ -27,53 +27,59 @@ $(function(){
  * 自定义手机号验证
  */
 jQuery.validator.addMethod("isMobile", function(value, element) {
-    var length = value.length;
-    var mobile = /^1[34578]\d{9}$/;/*/^1(3|4|5|7|8)\d{9}$/*/
-    return this.optional(element) || (length == 11 && mobile.test(value));
+    const length = value.length;
+	const mobile = /^1[34578]\d{9}$/;/*/^1(3|4|5|7|8)\d{9}$/*/
+    return this.optional(element) || (length === 11 && mobile.test(value));
 }, "请正确填写您的手机号码");
-
+/**
+ * ERC20钱包地址验证
+ */
+jQuery.validator.addMethod("isERC20", function(value, element) {
+	const erc20 = /^(0x)?[0-9a-fA-F]{40}$/;
+	return this.optional(element) || erc20.test(value);
+}, "请正确填写ERC20钱包地址");
 /*分表前缀标识正则*/
 $.validator.addMethod("tablePrefix",function(value,element){
     value = trim(value);
-    var patrn = new RegExp("^[a-z]+_$");
+	const patrn = new RegExp("^[a-z]+_$");
     return patrn.test(value);
 },"分表前缀必须以 小写英文开头,并只能包含小写英文,并以 _ 结尾!");
 /*权限标识正则*/
 $.validator.addMethod("premissionName",function(value,element){
     value = trim(value);
-    var patrn = new RegExp("^PERM_.*?[a-zA-Z0-9]$");
+	const patrn = new RegExp("^PERM_.*?[a-zA-Z0-9]$");
     return patrn.test(value);
 },"权限标识必须以 'PERM_' 开头,并以数字或英文结尾!");
 
 /*角色标识正则*/
 $.validator.addMethod("roleName",function(value,element){
     value = trim(value);
-    var patrn = new RegExp("^ROLE_.*?[a-zA-Z0-9]$");
+	const patrn = new RegExp("^ROLE_.*?[a-zA-Z0-9]$");
     return patrn.test(value);
 },"角色标识必须以 'ROLE_' 开头,并以数字或英文结尾!");
 
 /*不包含中文*/
 $.validator.addMethod("noChinese",function(value,element){
-    var patrn = new RegExp('[\u4e00-\u9fa5]');
+	const patrn = new RegExp('[\u4e00-\u9fa5]');
     return (!patrn.test(value));
 },"不能包含汉字!");
 
 /*树设为必填项*/
 $.validator.addMethod("treeRequired",function(value,element){
-	var b1 = value.indexOf("未选择") == -1;
-	var b2 = value !='';
-	var b3 = typeof(value) != 'undefined';
-    return (b1 && b2 && b3)?true:false;
+	const b1 = value.indexOf("未选择") === -1;
+	const b2 = value !=='';
+	const b3 = typeof(value) != 'undefined';
+    return (b1 && b2 && b3);
 },"必填字段");
 
 /*不为空字符串*/
 $.validator.addMethod("notEmpty",function(value,element){
-    return (isEmptyStr(value))?false:true;
+    return (!isEmptyStr(value));
 },"该字段不能为空值");
 
 /*正数*/
 $.validator.addMethod("positiveNumber",function(value,element){
-    var patrn = new RegExp('^[0-9]*$');
-    var number = patrn.test(value);
-    return (number && value >= 0)?true:false;
+	const patrn = new RegExp('^[0-9]*$');
+	const number = patrn.test(value);
+    return (number && value >= 0);
 },"该字段不能为负数");

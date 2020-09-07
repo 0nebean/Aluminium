@@ -1,9 +1,6 @@
 package net.onebean.aluminium.service;
 import net.onebean.core.base.IBaseBiz;
 import net.onebean.aluminium.model.SysRole;
-import net.onebean.core.extend.Sort;
-import net.onebean.core.query.Pagination;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * @Auther 0neBean
+ * @Auther Heisenberg
  * spring 初始化资源
  */
 @Component("BeanDefineConfigue")
@@ -21,7 +21,7 @@ public class BeanDefineConfigue implements ApplicationListener<ContextRefreshedE
 
     private final static Logger logger = (Logger) LoggerFactory.getLogger(BeanDefineConfigue.class);
 
-    //0neBean:当一个ApplicationContext被初始化或刷新触发 加载字典到内存中
+    //当一个ApplicationContext被初始化或刷新触发 加载字典到内存中
     public void onApplicationEvent(ContextRefreshedEvent event) {
         logger.info("start init custom spring config");
         dicDictionaryUtils.init();

@@ -24,7 +24,7 @@ public class ${model_name}ServiceImpl extends BaseBiz<${model_name}, ${model_nam
 
     /**
      * 查找所有子节点
-     * @author 0neBean
+     * @author Heisenberg
      * @param parentId
      * @return
      */
@@ -45,7 +45,7 @@ public class ${model_name}ServiceImpl extends BaseBiz<${model_name}, ${model_nam
 
         /**
         * 异步查找子节点,每次查找一级
-        * @author 0neBean
+        * @author Heisenberg
         * @param parentId
         * @return
         */

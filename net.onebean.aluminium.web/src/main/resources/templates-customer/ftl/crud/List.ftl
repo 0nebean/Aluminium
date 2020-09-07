@@ -49,8 +49,8 @@
                                 <div class="am-u-sm-12 am-u-md-6 am-u-lg-2">
                                     <div class="am-form-group tpl-table-list-select">
                                         <select data-am-selected="{btnSize: 'sm'}" id="orderBySelector">
-                                            <option value="id-asc" selected>ID升序</option>
-                                            <option value="id-desc">ID降序</option>
+                                            <option value="id-asc">ID升序</option>
+                                            <option value="id-desc" selected>ID降序</option>
                                         </select>
                                     </div>
                                 </div>
@@ -90,11 +90,12 @@
                                     <tr>
                             <#if field_arr?exists>
                                 <#list field_arr as item>
-                                    <#if item.columnName != 'id' && item.columnName != 'createTime' && item.columnName != 'updateTime' && item.columnName != 'isDeleted' && item.columnName != 'operatorId'  && item.columnName != 'operatorName'>
+                                    <#if item.columnName != 'id' && item.columnName != 'updateTime' && item.columnName != 'isDeleted' && item.columnName != 'operatorId'  && item.columnName != 'operatorName'>
                                         <th>${item.annotation}</th>
                                     </#if>
                                 </#list>
                             </#if>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody id="dataTable">
@@ -128,7 +129,7 @@
         var sort = $("#orderBySelector").val().split('-')[1];
         var param = {sort: {orderBy: orderBy, sort: sort}, page: {currentPage: currentPage,pageSize: pageSize}, data: formatQueryFromParam()};
         doPost("/${mapping}/list",param,function (res) {
-            $('#dataTable').html(template('tpl-${mapping}', res.datas));
+            $('#dataTable').html(template('tpl-${mapping}', res.data));
             $('#pagination').html(template('tpl-pagination', res.page))
         })
     }
@@ -139,7 +140,7 @@
     <tr  class={{if $index%2==0}} "gradeX" {{else}} "even gradeC" {{/if}} >
 <#if field_arr?exists>
     <#list field_arr as item>
-        <#if item.columnName != 'id' && item.columnName != 'createTime' && item.columnName != 'updateTime' && item.columnName != 'isDeleted' && item.columnName != 'operatorId'  && item.columnName != 'operatorName'>
+        <#if item.columnName != 'id' && item.columnName != 'updateTime' && item.columnName != 'isDeleted' && item.columnName != 'operatorId'  && item.columnName != 'operatorName'>
             <td><#if (item_index == 1)><a href="javascript:;" onclick="routingPage('/${mapping}/view/{{data.id}}')"></#if>{{data.${item.columnName}}}<#if (item_index == 1)></a></#if></td>
         </#if>
     </#list>

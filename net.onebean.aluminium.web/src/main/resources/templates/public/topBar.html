@@ -2,7 +2,8 @@
 <header th:fragment="topBar">
     <!-- logo -->
     <div class="am-fl tpl-header-logo">
-        <a href="/"><img th:src="@{/system_assets/img/logo.png}" alt="" /></a>
+        <a href="/"><img th:src="@{/system_assets/img/logo.png}" alt="" class="show-white"/></a>
+        <a href="/"><img th:src="@{/system_assets/img/logo.png}" alt="" class="show-black"/></a>
     </div>
     <!-- 右侧内容 -->
     <div class="tpl-header-fluid">
@@ -12,12 +13,15 @@
             </span>
         </div>
         <!-- 搜索 -->
-        <div class="am-fl tpl-header-search">
-            <form class="tpl-header-search-form" action="javascript:;">
-                <button class="tpl-header-search-btn am-icon-search"></button>
-                <input class="tpl-header-search-box" type="text" placeholder="搜索内容..." />
-            </form>
-        </div>
+        <th:block sec:authorize="hasPermission('$everyone','PERM_USER_INFO_FIND_UAG_ID_BY_SEARCH_TEXT')">
+            <div class="am-fl tpl-header-search">
+                <form class="tpl-header-search-form" action="javascript:;">
+                    <button class="tpl-header-search-btn am-icon-search" onclick="search()"></button>
+                    <input class="tpl-header-search-box" type="text" placeholder="占坑文本占坑文本占坑文本" id="searchText"
+                           style="width: 400px;"/>
+                </form>
+            </div>
+        </th:block>
         <!-- 其它功能-->
         <div class="am-fr tpl-header-navbar">
             <ul>
@@ -30,52 +34,10 @@
                 <li class="am-dropdown tpl-dropdown" data-am-dropdown>
                     <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
                         <i class="am-icon-envelope"></i>
-                        <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
+                        <span class="am-badge am-badge-success am-round item-feed-badge" id="unDealJobOrderSum"></span>
                     </a>
-                    <!-- 弹出列表 -->
-                    <ul class="am-dropdown-content tpl-dropdown-content">
-                        <li class="tpl-dropdown-menu-messages">
-                            <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                <div class="menu-messages-ico">
-                                    <img th:src="@{/system_assets/img/user04.png}" alt="">
-                                </div>
-                                <div class="menu-messages-time">
-                                    3小时前
-                                </div>
-                                <div class="menu-messages-content">
-                                    <div class="menu-messages-content-title">
-                                        <i class="am-icon-circle-o am-text-success"></i>
-                                        <span>夕风色</span>
-                                    </div>
-                                    <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
-                                    <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="tpl-dropdown-menu-messages">
-                            <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                <div class="menu-messages-ico">
-                                    <img th:src="@{/system_assets/img/user02.png}" alt="">
-                                </div>
-                                <div class="menu-messages-time">
-                                    5天前
-                                </div>
-                                <div class="menu-messages-content">
-                                    <div class="menu-messages-content-title">
-                                        <i class="am-icon-circle-o am-text-warning"></i>
-                                        <span>禁言小张</span>
-                                    </div>
-                                    <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
-                                    <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="tpl-dropdown-menu-messages">
-                            <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                <i class="am-icon-circle-o"></i> 进入列表…
-                            </a>
-                        </li>
+                    <!-- 工单列表 -->
+                    <ul class="am-dropdown-content tpl-dropdown-content" id="jobOrderTipsUl">
                     </ul>
                 </li>
 
@@ -83,64 +45,132 @@
                 <li class="am-dropdown" data-am-dropdown>
                     <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
                         <i class="am-icon-bell"></i>
-                        <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
+                        <span class="am-badge am-badge-warning am-round item-feed-badge" id="withdrawSum"></span>
                     </a>
 
                     <!-- 弹出列表 -->
-                    <ul class="am-dropdown-content tpl-dropdown-content">
-                        <li class="tpl-dropdown-menu-notifications">
-                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                <div class="tpl-dropdown-menu-notifications-title">
-                                    <i class="am-icon-line-chart"></i>
-                                    <span> 有6笔新的销售订单</span>
-                                </div>
-                                <div class="tpl-dropdown-menu-notifications-time">
-                                    12分钟前
-                                </div>
-                            </a>
-                        </li>
-                        <li class="tpl-dropdown-menu-notifications">
-                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                <div class="tpl-dropdown-menu-notifications-title">
-                                    <i class="am-icon-star"></i>
-                                    <span> 有3个来自人事部的消息</span>
-                                </div>
-                                <div class="tpl-dropdown-menu-notifications-time">
-                                    30分钟前
-                                </div>
-                            </a>
-                        </li>
-                        <li class="tpl-dropdown-menu-notifications">
-                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                <div class="tpl-dropdown-menu-notifications-title">
-                                    <i class="am-icon-folder-o"></i>
-                                    <span> 上午开会记录存档</span>
-                                </div>
-                                <div class="tpl-dropdown-menu-notifications-time">
-                                    1天前
-                                </div>
-                            </a>
-                        </li>
+                    <ul class="am-dropdown-content tpl-dropdown-content" id="withdrawTipsUl">
 
+                    </ul>
+                </li>
 
-                        <li class="tpl-dropdown-menu-notifications">
-                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                <i class="am-icon-bell"></i> 进入列表…
-                            </a>
-                        </li>
+                <!-- 新提示 -->
+                <li class="am-dropdown" data-am-dropdown>
+                    <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
+                        <i class="am-icon-money"></i>
+                        <span class="am-badge am-badge-primary am-round item-feed-badge" id="depositAuditSum"></span>
+                    </a>
+
+                    <!-- 弹出列表 -->
+                    <ul class="am-dropdown-content tpl-dropdown-content" id="depositAuditUl">
+
                     </ul>
                 </li>
 
                 <!-- 退出 -->
                 <li class="am-text-sm">
                     <form th:action="@{/logout}" method="post" id="sys_logout_from">
-                        <a onclick="$('#sys_logout_from').submit()"  href="javascript:;">
-                            <span class="am-icon-sign-out" ></span> 退出
+                        <a onclick="$('#sys_logout_from').submit()" href="javascript:;">
+                            <span class="am-icon-sign-out"></span> 退出
                         </a>
                     </form>
                 </li>
             </ul>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(function () {
+            initMessageBar()
+            setInterval(() => {
+                initMessageBar()
+            },10000)
+
+        });
+
+        function search() {
+        }
+
+
+        function initMessageBar() {
+        }
+    </script>
+    <script id="jobOrderTips" type="text/html">
+        {{each $data data}}
+        <li class="tpl-dropdown-menu-messages">
+            <a href="" class="tpl-dropdown-menu-messages-item am-cf">
+                <div class="menu-messages-ico">
+                    <img th:src="@{/system_assets/img/user-default.jfif}" alt="">
+                </div>
+                <div class="menu-messages-time">
+                    {{data.msgStatus}}
+                </div>
+                <div class="menu-messages-content">
+                    <div class="menu-messages-content-title">
+                        <i class="am-icon-circle-o am-text-success"></i>
+                        <span>{{data.uagIdStr}}</span>
+                    </div>
+                    <div class="am-text-truncate"> {{data.msgTitle}}</div>
+                    <div class="menu-messages-content-time">{{data.createTime}}</div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+        <li class="tpl-dropdown-menu-messages">
+            <a href="" class="tpl-dropdown-menu-messages-item am-cf">
+                <i class="am-icon-circle-o"></i> 进入工单列表…
+            </a>
+        </li>
+    </script>
+
+    <script id="withdrawTips" type="text/html">
+        <li class="tpl-dropdown-menu-notifications">
+            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                <div class="tpl-dropdown-menu-notifications-title">
+                    <i class="am-icon-star"></i>
+                    <span> 有{{asdsad}}占坑文本占坑文本占坑文本</span>
+                </div>
+                <div class="tpl-dropdown-menu-notifications-time">
+
+                </div>
+            </a>
+        </li>
+        <li class="tpl-dropdown-menu-notifications">
+            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                <div class="tpl-dropdown-menu-notifications-title">
+                    <i class="am-icon-star"></i>
+                    <span> 有{{asdsad}}占坑文本占坑文本占坑文本</span>
+                </div>
+                <div class="tpl-dropdown-menu-notifications-time">
+
+                </div>
+            </a>
+        </li>
+        <li class="tpl-dropdown-menu-notifications">
+            <a href="" class="tpl-dropdown-menu-notifications-item am-cf">
+                <i class="am-icon-bell"></i> 进入列表…
+            </a>
+        </li>
+    </script>
+
+
+    <script id="depositAuditTips" type="text/html">
+        <li class="tpl-dropdown-menu-notifications">
+            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                <div class="tpl-dropdown-menu-notifications-title">
+                    <i class="am-icon-star"></i>
+                    <span> 有{{asdsad}}占坑文本占坑文本</span>
+                </div>
+                <div class="tpl-dropdown-menu-notifications-time">
+
+                </div>
+            </a>
+        </li>
+        <li class="tpl-dropdown-menu-notifications">
+            <a href="" class="tpl-dropdown-menu-notifications-item am-cf">
+                <i class="am-icon-bell"></i> 进入列表…
+            </a>
+        </li>
+    </script>
 </header>
 <!-- 通用头部 -->

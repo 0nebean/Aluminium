@@ -1,7 +1,7 @@
 package net.onebean.aluminium.common.thymeleaf.processor;
 
 import net.onebean.component.SpringUtil;
-import net.onebean.aluminium.common.thymeleaf.base.OneBeanBaseAbstractElementTagProcessor;
+import net.onebean.aluminium.common.thymeleaf.base.BaseAbstractElementTagProcessor;
 import net.onebean.aluminium.service.SysOrganizationService;
 import net.onebean.aluminium.service.impl.SysOrganizationServiceImpl;
 import net.onebean.util.StringUtils;
@@ -12,11 +12,11 @@ import org.thymeleaf.processor.element.IElementTagStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
 /**
- * @author 0neBean
+ * @author Heisenberg
  * 自定义方言 机构树选择器
  */
 @Component
-public class OrgTreeProcessor extends OneBeanBaseAbstractElementTagProcessor {
+public class OrgTreeProcessor extends BaseAbstractElementTagProcessor {
 
     private static final String PREFIX = "tree";
     private static final String TAG_NAME = "org";

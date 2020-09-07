@@ -112,7 +112,7 @@ function clearUploadImg(target) {
 var onLoadBreadCrumbs = function () {
     var $name = $(document).attr("title");
     try {
-        $('.onebean-bread-crumbs-group').html(template('tpl-breadCrumbs', $name));
+        $('.heisenberg-bread-crumbs-group').html(template('tpl-breadCrumbs', $name));
     } catch (e) {
     }
 };
@@ -230,7 +230,7 @@ $('body').on('click', '.sidebar-nav-sub-title', function () {
  * 刪除一行tr按钮
  */
 $('body').on('click', '.del-line-btn', function () {
-    $(this).parents('.onebean-line-tr').remove();
+    $(this).parents('.heisenberg-line-tr').remove();
 });
 
 
@@ -249,7 +249,7 @@ $('body').on('switchChange.bootstrapSwitch init.bootstrapSwitch', 'input[data-am
 /**
  * list页面搜索条件里的dic选择框变动后 重新加载页面
  */
-$('body').on('change', '.onebean-param-select-box', function () {
+$('body').on('change', '.heisenberg-param-select-box', function () {
     resetPageNumber();
     initDataTable();
 });
@@ -316,8 +316,8 @@ $(".reset-button").on("click", function () {
     $("#orderBySelector").children('option').eq(0).attr('selected', true);
     $("#limitSelector").trigger('changed.selected.amui');
     $("#orderBySelector").trigger('changed.selected.amui');
-    $('.onebean-param-select-box').selected('destroy');
-    $('.onebean-param-select-box').selected();
+    $('.heisenberg-param-select-box').selected('destroy');
+    $('.heisenberg-param-select-box').selected();
     initDataTable()
 });
 
@@ -620,6 +620,17 @@ function initUploadModal(completeHandler) {
     });
 }
 
+$('body').on("click", '.am-dropdown-charts-simulation li a', function (e) {
+    const $self = $(this)
+    const $ul = $self.parents('.am-dropdown-charts-simulation');
+    $ul.find('.am-active').removeClass('am-active');
+    $self.parent("li").addClass('am-active')
+});
+
+//获取图表标题颜色
+const getChartsTitleColorByTheme =function(){
+    return ($('body').attr('class')==='theme-black')?'#ffffff':'#838FA1';
+}
 
 /**
  * 通用 数据列表 拼接 查询参数 及 条件
@@ -670,12 +681,12 @@ function isEmptyStr(str) {
  */
 $.fn.serializeChildListJson = function (parent) {
     var $from = this;
-    var $trs = $from.find('.onebean-line-tr');
+    var $trs = $from.find('.heisenberg-line-tr');
     var jsonArr = new Array();
     var tempValue = '';
     $trs.each(function (i, e) {
         var $obj = new Object();
-        var $inPuts = $(e).find('.onebean-child-list-item');
+        var $inPuts = $(e).find('.heisenberg-child-list-item');
         $inPuts.each(function (index, element) {
             var value = $(element).val();
             var name = $(element).attr('name');
@@ -704,7 +715,10 @@ $.fn.serializeJson = function () {
     var json = {};
     arr.forEach(function (item) {
         var name = item.name;
-        var value = trim(item.value);
+        var value = item.value;
+        if (name.indexOf('context')  == -1){
+            value = trim(item.value);
+        }
 
         if (!json[name]) {
             json[name] = value;
@@ -714,7 +728,6 @@ $.fn.serializeJson = function () {
             json[name] = [json[name], value];
         }
     });
-
     var $radio = $('input[type=radio],input[type=checkbox]', this);
     var temp = {};
     $.each($radio, function () {
@@ -835,14 +848,14 @@ function getTodayDataStr() {
  * 初始化时间选择控件
  */
 function initDataPicker(startDate) {
-    $('.onebean-data-picker-data').datetimepicker({
+    $('.heisenberg-data-picker-data').datetimepicker({
         language: 'zh-CN',
         format: 'yyyy-mm-dd hh:ii:00',
         autoclose: true,
         todayBtn: true,
         startDate: startDate
     });
-    $('.onebean-data-picker-time').datetimepicker({
+    $('.heisenberg-data-picker-time').datetimepicker({
         language: 'zh-CN',
         format: 'yyyy-mm-dd hh:ii:00',
         autoclose: true,
@@ -900,4 +913,8 @@ function setCookie(name, value) {
     var exp = new Date();
     exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
     document.cookie = name + "=" + encodeURIComponent(JSON.stringify(value)) + ";expires=" + exp.toGMTString() + ";path=/";
+}
+
+function changeSimulationDays(simulationDays) {
+
 }

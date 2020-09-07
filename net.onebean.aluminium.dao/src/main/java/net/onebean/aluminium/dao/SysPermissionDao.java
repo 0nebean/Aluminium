@@ -1,6 +1,5 @@
 package net.onebean.aluminium.dao;
 
-import net.onebean.aluminium.vo.OrgTree;
 import net.onebean.core.base.BaseDao;
 import net.onebean.aluminium.vo.MenuTree;
 import net.onebean.aluminium.model.SysPermission;

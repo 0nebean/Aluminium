@@ -4,7 +4,7 @@
 .hide{
   display: none;
 }
-.onebean-frame-index{
+.heisenberg-frame-index{
   margin-left: 0 !important;
 }
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
@@ -54,6 +54,13 @@ header {
   vertical-align: middle;
 }
 .tpl-header-logo img {
+  width: 0px;
+}
+.theme-white .show-white {
+  width: 170px;
+}
+
+.theme-black .show-black {
   width: 170px;
 }
 .tpl-header-fluid {
@@ -691,6 +698,19 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   text-align: center;
   color: #dce2ec;
 }
+
+.theme-black .am-dropdown-content a:hover{
+  color: #06a9fb !important;
+}
+.theme-white .am-dropdown-content a:hover{
+  color: #06a9fb !important;
+}
+.theme-white .am-dropdown-content .am-active a:hover{
+  color: #ffffff !important;
+}
+.theme-black .am-dropdown-content .am-active a:hover{
+  color: #ffffff !important;
+}
 .theme-white .tpl-error-btn {
   background: #03a9f3;
   border: 1px solid #03a9f3;
@@ -1018,6 +1038,14 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   background: #e7505a;
   color: #fff;
 }
+.theme-white .tpl-table-black-operation a.tpl-table-black-operation-success {
+  border: 1px solid #5eb95e;
+  color: #5eb95e;
+}
+.theme-white .tpl-table-black-operation a.tpl-table-black-operation-success:hover {
+  background: #5eb95e;
+  color: #fff;
+}
 .theme-white .tpl-table-black-operation a.tpl-table-black-operation-warn {
   border: 1px solid #f3ac2c;
   color: #f3ac2c;
@@ -1119,6 +1147,33 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 .theme-white .widget-title {
   font-size: 16px;
 }
+.theme-white .widget-success {
+  min-height: 174px;
+  border: 1px solid #5ae55a;
+  border-top: 2px solid #5ae55a;
+  background: #5ae55a;
+  color: #ffffff;
+  padding: 12px 17px;
+  padding-left: 22px;
+}
+.theme-white .widget-danger {
+  min-height: 174px;
+  border: 1px solid #e8120b;
+  border-top: 2px solid #e8120b;
+  background: #e8120b;
+  color: #ffffff;
+  padding: 12px 17px;
+  padding-left: 22px;
+}
+.theme-white .widget-warning {
+  min-height: 174px;
+  border: 1px solid #fa6e07;
+  border-top: 2px solid #fa6e07;
+  background: #fa6e07;
+  color: #ffffff;
+  padding: 12px 17px;
+  padding-left: 22px;
+}
 .theme-white .widget-primary {
   min-height: 174px;
   border: 1px solid #32c5d2;
@@ -1134,7 +1189,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   right: 30px;
   top: 24px;
   font-size: 70px;
-  color: #46cad6;
+  color: #e7f1f1;
 }
 .theme-white .widget-statistic-description {
   position: relative;
@@ -1666,6 +1721,14 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   background: #f35842;
   color: #fff;
 }
+.theme-black .tpl-table-black-operation a.tpl-table-black-operation-success {
+  border: 1px solid #5eb95e;
+  color: #5eb95e;
+}
+.theme-black .tpl-table-black-operation a.tpl-table-black-operation-success:hover {
+  background: #5eb95e;
+  color: #fff;
+}
 .theme-black .tpl-table-black-operation a.tpl-table-black-operation-warn {
   border: 1px solid #f3ac2c;
   color: #f3ac2c;
@@ -1787,6 +1850,27 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   background: #4b5357;
   color: #ffffff;
 }
+.theme-black .widget-success {
+  border: 1px solid #3f913f;
+  border-top: 2px solid #3f913f;
+  background: #3f913f;
+  color: #ffffff;
+  padding: 12px 17px;
+}
+.theme-black .widget-danger {
+  border: 1px solid #be2924;
+  border-top: 2px solid #be2924;
+  background: #be2924;
+  color: #ffffff;
+  padding: 12px 17px;
+}
+.theme-black .widget-warning {
+  border: 1px solid #be590a;
+  border-top: 2px solid #be590a;
+  background: #be590a;
+  color: #ffffff;
+  padding: 12px 17px;
+}
 .theme-black .widget-primary {
   border: 1px solid #11627d;
   border-top: 2px solid #105f79;
@@ -1800,7 +1884,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   right: 30px;
   top: 0px;
   font-size: 70px;
-  color: #1b9eca;
+  color: #bcdde8;
 }
 .theme-black .widget-statistic-description {
   position: relative;

@@ -9,8 +9,8 @@ import net.onebean.core.base.BasePaginationRequest;
 import net.onebean.core.base.BasePaginationResponse;
 import net.onebean.core.error.BusinessException;
 import net.onebean.util.DateUtils;
-import net.onebean.aluminium.core.BaseController;
-import net.onebean.aluminium.common.error.ErrorCodesEnum;
+import BaseController;
+import ErrorCodesEnum;
 import ${model_package_name}.${model_name};
 import ${service_package_name}.${model_name}Service;
 import org.springframework.context.annotation.Description;
@@ -96,7 +96,6 @@ public class ${model_name}Controller extends BaseController<${model_name},${mode
     */
     @RequestMapping("save")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','${premName}_SAVE')")
     public BaseResponse<${model_name}> add(@RequestBody ${model_name} entity) {
     logger.info("method add access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
@@ -128,12 +127,12 @@ public class ${model_name}Controller extends BaseController<${model_name},${mode
     @Description(value = "删除")
     @ResponseBody
     @PreAuthorize("hasPermission('$everyone','${premName}_DELETE')")
-    public BaseResponse<${model_name}> delete(@PathVariable("id") Object id) {
+    public BaseResponse<Integer> delete(@PathVariable("id") Object id) {
         logger.info("access" + DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
-        BaseResponse<${model_name}> response = new BaseResponse<>();
+        BaseResponse<Integer> response = new BaseResponse<>();
         try {
             logger.debug("method delete id = " + JSON.toJSONString(id, SerializerFeature.WriteMapNullValue));
-            baseService.deleteById(id);
+            response = response.ok(baseService.deleteById(id));
         } catch (BusinessException e) {
             response.setErrCode(e.getCode());
             response.setErrMsg(e.getMsg());
@@ -154,7 +153,6 @@ public class ${model_name}Controller extends BaseController<${model_name},${mode
     */
     @RequestMapping("list")
     @ResponseBody
-    @SuppressWarnings("unchecked")
     @PreAuthorize("hasPermission('$everyone','${premName}_LIST')")
     public BasePaginationResponse<${model_name}> list (@RequestBody BasePaginationRequest<String> request){
         logger.info("access"+ DateUtils.getNowyyyy_MM_dd_HH_mm_ss());
