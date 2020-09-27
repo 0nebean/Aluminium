@@ -6,7 +6,7 @@
         var  theme = ($('body').attr('class')=='theme-black')?'fip-inverted':'fip-grey';
         doGet('/system_assets/js/icon/icon.json',{},function (res) {
             res = res.substr(1,res.length-2);
-            $('.heisenberg-icon-picker').fontIconPicker({
+            $('.0neBean-icon-picker').fontIconPicker({
                 theme:theme,
                 source: res.split(","),
                 emptyIcon: true,

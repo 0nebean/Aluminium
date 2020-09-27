@@ -2,7 +2,7 @@
 rem ======================================================================
 rem windows startup script
 rem
-rem author: Heisenberg
+rem author: 0neBean
 rem date: 2018-12-2
 rem ======================================================================
 

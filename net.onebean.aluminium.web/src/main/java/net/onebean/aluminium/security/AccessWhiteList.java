@@ -2,7 +2,7 @@ package net.onebean.aluminium.security;
 
 /**
  *  访问白名单
- * Heisenberg
+ * 0neBean
  */
 public class AccessWhiteList {
 

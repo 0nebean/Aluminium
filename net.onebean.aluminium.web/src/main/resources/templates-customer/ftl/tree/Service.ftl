@@ -15,7 +15,7 @@ public interface ${model_name}Service extends IBaseBiz<${model_name}> {
 
     /**
      * 查找所有子节点
-     * @author Heisenberg
+     * @author 0neBean
      * @param parentId
      * @return
      */
@@ -23,7 +23,7 @@ public interface ${model_name}Service extends IBaseBiz<${model_name}> {
 
     /**
     * 异步查找子节点,每次查找一级
-    * @author Heisenberg
+    * @author 0neBean
     * @param parentId
     * @return
     */

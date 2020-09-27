@@ -14,7 +14,7 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 /**
  * spring net.onebean.aluminium.security
  * web安全配置器,boot版本基本配置
- * @author Heisenberg
+ * @author 0neBean
  */
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 @Configuration

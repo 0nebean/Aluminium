@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * 过滤器
  *
- * @author Heisenberg
+ * @author 0neBean
  */
 @Service
 @WebFilter(filterName = "loginSuccessDoOnceFilter", urlPatterns = "/*")

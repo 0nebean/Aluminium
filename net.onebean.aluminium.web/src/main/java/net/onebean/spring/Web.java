@@ -1,6 +1,6 @@
 package net.onebean.spring;
 
-import net.onebean.core.extend.ApolloConfInitializer;
+import net.onebean.core.extend.ConfigInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 public class Web {
 
 	public static void main(String[] args) {
-		ApolloConfInitializer.init();
+		ConfigInitializer.initLocal();
 		SpringApplication.run(Web.class, args);
 	}
 

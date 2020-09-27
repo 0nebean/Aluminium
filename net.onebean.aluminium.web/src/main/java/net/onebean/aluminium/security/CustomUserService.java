@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * spring net.onebean.aluminium.security 根据用户名关联相应的权限实现
- * @author Heisenberg
+ * @author 0neBean
  */
 @Service
 public class CustomUserService implements UserDetailsService { //自定义UserDetailsService 接口

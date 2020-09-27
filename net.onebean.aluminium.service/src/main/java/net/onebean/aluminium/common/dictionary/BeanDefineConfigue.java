@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * @Auther Heisenberg
+ * @Auther 0neBean
  * spring 初始化资源
  */
 @Component("BeanDefineConfigue")

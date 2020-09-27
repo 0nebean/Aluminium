@@ -2,7 +2,7 @@ package net.onebean.aluminium.enumModel;
 
 /**
  * CodeDatabaseTable枚举类
- * @author Heisenberg
+ * @author 0neBean
  */
 public enum CodeDatabaseTableEnum {
     GENREATER_TYPE_CRUD("crud"),

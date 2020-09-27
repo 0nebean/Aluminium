@@ -8,7 +8,7 @@ import java.util.List;
 public interface SysRoleDao extends BaseDao<SysRole> {
     /**
      * 根据用户登录名查询用户所有角色
-     * @author Heisenberg
+     * @author 0neBean
      * @param userId
      * @return List<SysRole>
      */

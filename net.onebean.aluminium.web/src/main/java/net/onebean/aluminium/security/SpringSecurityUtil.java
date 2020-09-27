@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.Random;
 
 /**
- * @author Heisenberg
+ * @author 0neBean
  * spring security工具类
  */
 public class SpringSecurityUtil {

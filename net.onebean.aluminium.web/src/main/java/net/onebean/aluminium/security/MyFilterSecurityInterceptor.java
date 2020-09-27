@@ -15,7 +15,7 @@ import java.util.Optional;
 
 /**
  * 自定义实现的security拦截器,指定了权限校验规则类 MyAccessDecisionManager
- * @author Heisenberg
+ * @author 0neBean
  */
 @Service
 public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {

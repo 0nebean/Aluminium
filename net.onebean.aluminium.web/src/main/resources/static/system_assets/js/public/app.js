@@ -29,7 +29,7 @@ const clickChangeTheme = function () {
 const changeThemeColor = function ($chooseColor) {
     $('body').attr('class', $chooseColor);
     saveSelectColor.Color = $chooseColor;
-    const $tab = $('#heisenberg-frame-container');
+    const $tab = $('#0neBean-frame-container');
     const $bd = $tab.find('.am-tabs-bd');
     const $frames = $bd.find('iframe');
     $.each($frames, function (index, item) {

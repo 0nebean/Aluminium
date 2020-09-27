@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 /**
  * 权限校验规则的实现
- * Heisenberg
+ * 0neBean
  */
 @Service
 public class MyAccessDecisionManager implements AccessDecisionManager {

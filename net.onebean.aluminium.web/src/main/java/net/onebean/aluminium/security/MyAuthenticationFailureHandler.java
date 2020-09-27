@@ -1,7 +1,12 @@
 package net.onebean.aluminium.security;
 
+import net.onebean.aluminium.enumModel.LoginStatusEnum;
+import net.onebean.aluminium.service.SysAdminAccessIpRecordService;
+import net.onebean.util.StringUtils;
+import net.onebean.util.WebUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -12,18 +17,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Optional;
 
 /**
- * @author Heisenberg
+ * @author 0neBean
  * 统一权限错误抛出托管类
  */
 @Service
 public class MyAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
+
+    @Autowired
+    private SysAdminAccessIpRecordService accessIpRecordService;
     protected final Log logger = LogFactory.getLog(this.getClass());
     private String defaultFailureUrl;
     private boolean forwardToDestination = false;
@@ -63,6 +74,11 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
                 request.getSession().setAttribute("SPRING_SECURITY_LAST_EXCEPTION", castExceptionToReMark(exception));
             }
         }
+        //记录登录失败记录
+        String ipAddress = WebUtils.getIpAddress();
+        String username = Optional.of(request).map(ServletRequest::getParameterMap).map(m -> Arrays.toString(m.get("username"))).orElse("");
+        username = StringUtils.cleanArrayStr(username);
+        accessIpRecordService.addAdminAccessIpRecord(LoginStatusEnum.PASSWORD_ERR.getValue(),ipAddress,username);
     }
 
     protected String castExceptionToReMark(AuthenticationException exception){

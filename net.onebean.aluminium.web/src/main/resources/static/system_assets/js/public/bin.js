@@ -112,7 +112,7 @@ function clearUploadImg(target) {
 var onLoadBreadCrumbs = function () {
     var $name = $(document).attr("title");
     try {
-        $('.heisenberg-bread-crumbs-group').html(template('tpl-breadCrumbs', $name));
+        $('.0neBean-bread-crumbs-group').html(template('tpl-breadCrumbs', $name));
     } catch (e) {
     }
 };
@@ -230,7 +230,7 @@ $('body').on('click', '.sidebar-nav-sub-title', function () {
  * 刪除一行tr按钮
  */
 $('body').on('click', '.del-line-btn', function () {
-    $(this).parents('.heisenberg-line-tr').remove();
+    $(this).parents('.0neBean-line-tr').remove();
 });
 
 
@@ -249,7 +249,7 @@ $('body').on('switchChange.bootstrapSwitch init.bootstrapSwitch', 'input[data-am
 /**
  * list页面搜索条件里的dic选择框变动后 重新加载页面
  */
-$('body').on('change', '.heisenberg-param-select-box', function () {
+$('body').on('change', '.0neBean-param-select-box', function () {
     resetPageNumber();
     initDataTable();
 });
@@ -316,8 +316,8 @@ $(".reset-button").on("click", function () {
     $("#orderBySelector").children('option').eq(0).attr('selected', true);
     $("#limitSelector").trigger('changed.selected.amui');
     $("#orderBySelector").trigger('changed.selected.amui');
-    $('.heisenberg-param-select-box').selected('destroy');
-    $('.heisenberg-param-select-box').selected();
+    $('.0neBean-param-select-box').selected('destroy');
+    $('.0neBean-param-select-box').selected();
     initDataTable()
 });
 
@@ -681,12 +681,12 @@ function isEmptyStr(str) {
  */
 $.fn.serializeChildListJson = function (parent) {
     var $from = this;
-    var $trs = $from.find('.heisenberg-line-tr');
+    var $trs = $from.find('.0neBean-line-tr');
     var jsonArr = new Array();
     var tempValue = '';
     $trs.each(function (i, e) {
         var $obj = new Object();
-        var $inPuts = $(e).find('.heisenberg-child-list-item');
+        var $inPuts = $(e).find('.0neBean-child-list-item');
         $inPuts.each(function (index, element) {
             var value = $(element).val();
             var name = $(element).attr('name');
@@ -848,14 +848,14 @@ function getTodayDataStr() {
  * 初始化时间选择控件
  */
 function initDataPicker(startDate) {
-    $('.heisenberg-data-picker-data').datetimepicker({
+    $('.0neBean-data-picker-data').datetimepicker({
         language: 'zh-CN',
         format: 'yyyy-mm-dd hh:ii:00',
         autoclose: true,
         todayBtn: true,
         startDate: startDate
     });
-    $('.heisenberg-data-picker-time').datetimepicker({
+    $('.0neBean-data-picker-time').datetimepicker({
         language: 'zh-CN',
         format: 'yyyy-mm-dd hh:ii:00',
         autoclose: true,

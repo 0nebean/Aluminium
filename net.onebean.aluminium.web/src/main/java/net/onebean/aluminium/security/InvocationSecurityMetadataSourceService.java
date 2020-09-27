@@ -20,7 +20,7 @@ import java.util.Iterator;
 /**
  * 资源初始化拦截器,
  * 所有用到的静态权限资源在这里加载
- * Heisenberg
+ * 0neBean
  */
 @Service
 public class InvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {

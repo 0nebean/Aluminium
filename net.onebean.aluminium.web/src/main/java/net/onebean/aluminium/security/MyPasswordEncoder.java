@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 密码加解密工具类
- * @author Heisenberg
+ * @author 0neBean
  */
 @Service
 public class MyPasswordEncoder implements PasswordEncoder {

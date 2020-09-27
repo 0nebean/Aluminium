@@ -9,7 +9,7 @@ import org.thymeleaf.processor.element.IElementTagStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
 /**
- * @author Heisenberg
+ * @author 0neBean
  * 自定义thymeleaf标签 图标选择器 功能实现
  */
 @Component
@@ -50,7 +50,7 @@ public class IconElementProcessor extends BaseAbstractElementTagProcessor {
         inputStart = modelFactory.setAttribute(inputStart,"name",name);
         inputStart = modelFactory.setAttribute(inputStart,"id",id);
         inputStart = modelFactory.setAttribute(inputStart,"type","text");
-        inputStart = modelFactory.setAttribute(inputStart,"class","heisenberg-icon-picker");
+        inputStart = modelFactory.setAttribute(inputStart,"class","0neBean-icon-picker");
         if (StringUtils.isNotEmpty(disabled) && disabled.equals("disabled")) {
             inputStart = modelFactory.setAttribute(inputStart,"disabled",disabled);
         }

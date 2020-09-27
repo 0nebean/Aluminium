@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 /**
  * 所有controller的基类，提供了一些加工数据和获取controller类信息的统一方法
  * 会根据泛型S自动装载一个baseService
- * @author Heisenberg
+ * @author 0neBean
  * @param <M>
  * @param <S>
  */

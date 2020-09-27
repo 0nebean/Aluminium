@@ -9,14 +9,14 @@ import java.util.List;
 public interface SysOrganizationService extends IBaseBiz<SysOrganization> {
     /**
      * 查找所有子节点
-     * @author Heisenberg
+     * @author 0neBean
      * @return
      */
     List<SysOrganization> findChildSync(SysUser currentUser);
 
     /**a
      * 异步查找子节点,每次查找一级
-     * @author Heisenberg
+     * @author 0neBean
      * @param parentId 父级ID
      * @param selfId 自己的ID
      * @param currentUser 当前登录用户

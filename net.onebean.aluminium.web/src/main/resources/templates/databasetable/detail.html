@@ -166,12 +166,12 @@
                                                         <tbody>
                                                         <th:block th:each="data:${fieldList}" th:with="sort=(${data.sort} != null)?${data.sort}:${dataStat.index}">
                                                             <th:block th:if="${data.columnName != 'id'}">
-                                                                <tr  class="heisenberg-line-tr" >
-                                                                    <td><input type="text" class="tpl-form-input heisenberg-child-list-item" th:value="${data.columnName}" th:disabled="${view}" name="columnName"></td>
-                                                                    <td><input type="text" class="tpl-form-input heisenberg-child-list-item" th:value="${data.databaseType}"  disabled="disabled" name="databaseType"></td>
-                                                                    <td><input type="text" class="tpl-form-input heisenberg-child-list-item" th:value="${data.jdbcType}"  disabled="disabled" name="jdbcType"></td>
-                                                                    <td><input type="text" class="tpl-form-input heisenberg-child-list-item" th:value="${data.annotation}" th:disabled="${view}" name="annotation"></td>
-                                                                    <td><input type="text" class="tpl-form-input heisenberg-child-list-item" th:value="${sort}" th:disabled="${view}" name="sort" ></td>
+                                                                <tr  class="0neBean-line-tr" >
+                                                                    <td><input type="text" class="tpl-form-input 0neBean-child-list-item" th:value="${data.columnName}" th:disabled="${view}" name="columnName"></td>
+                                                                    <td><input type="text" class="tpl-form-input 0neBean-child-list-item" th:value="${data.databaseType}"  disabled="disabled" name="databaseType"></td>
+                                                                    <td><input type="text" class="tpl-form-input 0neBean-child-list-item" th:value="${data.jdbcType}"  disabled="disabled" name="jdbcType"></td>
+                                                                    <td><input type="text" class="tpl-form-input 0neBean-child-list-item" th:value="${data.annotation}" th:disabled="${view}" name="annotation"></td>
+                                                                    <td><input type="text" class="tpl-form-input 0neBean-child-list-item" th:value="${sort}" th:disabled="${view}" name="sort" ></td>
                                                                     <td><dic:code inChildList="true" code="YMKJLX" name="pageType" th:attr="value=${data.pageType},disabled=${view}"/></td>
                                                                     <td><dic:code inChildList="true" multiple="true" code="YMJYGZ" name="pageValidate"  th:attr="value=${data.pageValidate},disabled=${view}"/></td>
                                                                     <td><dic:code inChildList="true" code="SF" name="isQueryParam"  th:attr="value=${data.isQueryParam},disabled=${view}"/></td>

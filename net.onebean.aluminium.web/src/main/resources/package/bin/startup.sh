@@ -9,7 +9,7 @@
 # logs/back目录: 项目运行日志备份目录
 # nohup后台运行
 #
-# author: Heisenberg
+# author: 0neBean
 # date: 2018-12-2
 #======================================================================
 
@@ -125,15 +125,20 @@ STARTUP_LOG="${STARTUP_LOG}application startup command: nohup java ${JAVA_OPT} -
 nohup java ${JAVA_OPT} -jar -Denv=${ENVIRONMENT} ${BASE_PATH}/boot/${APPLICATION_JAR} --spring.config.location=${CONFIG_DIR} > ${LOG_PATH} 2>&1 &
 
 
+#======================================================================
+# 执行启动命令：后台启动项目,并将日志输出到项目根目录下的logs文件夹下
+#======================================================================
+nohup java ${JAVA_OPT} -jar -Denv=${ENVIRONMENT} ${BASE_PATH}/boot/${APPLICATION_JAR} --spring.config.location=${CONFIG_DIR} > ${LOG_PATH} 2>&1 &
+
+
 # 进程ID
 PID=$(ps -ef | grep "${APPLICATION_JAR}" | grep -v grep | awk '{ print $2 }')
 STARTUP_LOG="${STARTUP_LOG}application pid: ${PID}\n"
 
 # 启动日志追加到启动日志文件中
-#echo -e ${STARTUP_LOG} >> ${LOG_STARTUP_PATH}
+echo -e ${STARTUP_LOG} >> ${LOG_STARTUP_PATH}
 # 打印启动日志
-#echo -e ${STARTUP_LOG}
+echo -e ${STARTUP_LOG}
 
 # 打印项目日志
-#tail -f ${LOG_PATH}
-echo 'started admin!'
+tail -f ${LOG_PATH}

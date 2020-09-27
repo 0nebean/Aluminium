@@ -3,7 +3,7 @@ package net.onebean.aluminium.common.error;
 
 /**
  * 错误码定义
- * @author Heisenberg
+ * @author 0neBean
  * 1-4位 8886 代表 
  * 异常类型：5～6位，标识数据库、接口、缓存、权限等
  *	01-参数异常，参数有效性校验错误，在接口的response 的msg中请将校验有问题的参数返回给调用方；

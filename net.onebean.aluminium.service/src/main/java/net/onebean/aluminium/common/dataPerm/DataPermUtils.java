@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * 数据权限 工具类 用于生成数据权限sql
  * 该类设计参考了 jeeplus 框架数据权限 感谢jeeplus作者
- * @author Heisenberg
+ * @author 0neBean
  */
 @Service
 public class DataPermUtils {

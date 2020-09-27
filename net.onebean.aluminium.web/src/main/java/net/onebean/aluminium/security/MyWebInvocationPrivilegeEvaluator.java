@@ -16,7 +16,7 @@ import java.util.Collection;
 /**
  * web页面url拦截器
  * 对应sec:authorize-url标签功能
- * @author Heisenberg
+ * @author 0neBean
  */
 @Service
 public class MyWebInvocationPrivilegeEvaluator implements WebInvocationPrivilegeEvaluator {

@@ -29,7 +29,7 @@ public class SysOrganizationServiceImpl extends BaseBiz<SysOrganization, SysOrga
 
     /**
      * 查找所有子节点
-     * @author Heisenberg
+     * @author 0neBean
      * @return list
      */
     public List<SysOrganization> findChildSync(SysUser currentUser) {
@@ -83,7 +83,7 @@ public class SysOrganizationServiceImpl extends BaseBiz<SysOrganization, SysOrga
 
     /**
      * 异步查找子节点,每次查找一级
-     * @author Heisenberg
+     * @author 0neBean
      * @param parentId
      * @return
      */

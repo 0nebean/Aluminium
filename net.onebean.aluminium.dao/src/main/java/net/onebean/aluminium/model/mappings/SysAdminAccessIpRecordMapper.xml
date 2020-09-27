@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--author 0neBean-->
+<!--description 后台访问记录流水 mapper-->
+<!--date 2020-07-12 01:38:43-->
+<mapper namespace="net.onebean.aluminium.dao.SysAdminAccessIpRecordDao">
+
+        <sql id="basicFiled">
+            t.id,
+                t.login_ip as loginIp, 
+                t.user_name as userName, 
+                t.login_status as loginStatus,
+                t.create_time as createTime,
+                t.update_time as updateTime, 
+                t.operator_id as operatorId, 
+                t.operator_name as operatorName, 
+                t.is_deleted as isDeleted
+        </sql>
+
+        <resultMap id="basicResultMap" type="net.onebean.aluminium.model.SysAdminAccessIpRecord">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+                <result column="login_ip" jdbcType="VARCHAR" property="loginIp"/>
+                <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+                <result column="login_status" jdbcType="VARCHAR" property="loginStatus"/>
+                <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+                <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+                <result column="operator_id" jdbcType="INTEGER" property="operatorId"/>
+                <result column="operator_name" jdbcType="VARCHAR" property="operatorName"/>
+                <result column="is_deleted" jdbcType="CHAR" property="isDeleted"/>
+        </resultMap>
+
+</mapper>

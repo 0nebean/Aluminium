@@ -13,14 +13,14 @@ import java.util.Collection;
 /**
  * web页面权限方法拦截器
  * 对应sec:hasPermission标签功能
- * @author Heisenberg
+ * @author 0neBean
  */
 @Service
 public class MyPermissionEvaluator implements PermissionEvaluator {
 
     /**
      * @remark 校验权限方法
-     * @author Heisenberg
+     * @author 0neBean
      * @param authentication
      * @param permission
      */
@@ -37,7 +37,7 @@ public class MyPermissionEvaluator implements PermissionEvaluator {
 
     /**
      * @remark 校验权限默认方法(暂时没用上)
-     * @author Heisenberg
+     * @author 0neBean
      * @param authentication
      * @param taegetId
      * @param taegetType
@@ -64,7 +64,7 @@ public class MyPermissionEvaluator implements PermissionEvaluator {
 
     /**
      * @remark 校验权限方法
-     * @author Heisenberg
+     * @author 0neBean
      * 简单的字符串比较，相同则认为有权限
      */
     protected boolean hasPermission(Authentication authentication, Object permission) {

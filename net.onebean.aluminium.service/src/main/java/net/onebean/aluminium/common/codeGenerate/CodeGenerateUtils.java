@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 /**
  * 生成代码 工具类
- * @author Heisenberg
+ * @author 0neBean
  */
 @Service
 public class CodeGenerateUtils {

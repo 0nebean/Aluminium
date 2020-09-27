@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 统一异常处理类
- * @author Heisenberg
+ * @author 0neBean
  */
 @RequestMapping("error")
 @Controller
